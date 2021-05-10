@@ -1,3 +1,6 @@
+<?php session_start(); 
+   
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +24,10 @@
 
    <?php include ("navbar.php"); ?>
    
+   <?php 
+   // Check delle variabili di sessione
+   var_dump($_SESSION);?>
+
    <div class="row ricerca">
       <div class="container-fluid ">
       
@@ -31,7 +38,10 @@
       </div>
    </div>
 
-   <?php include ("footer-include.php"); ?>
+   <?php include ("footer-include.php");
+  
+
+   ?>
 
 </body>
 
