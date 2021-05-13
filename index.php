@@ -1,6 +1,5 @@
-<?php session_start(); 
-   
-  ?>
+<?php include("sessioni.php"); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -1,4 +1,5 @@
 <form>
+  <h3 class="white-text centrato">Cerca un laboratorio:</h3>
 <div class="input-group">
   <div class="form-outline">
 

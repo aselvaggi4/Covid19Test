@@ -21,13 +21,14 @@
         <li class="nav-item">
           <a class="nav-link <?php if ($page_id == 2) {
                                 echo "active";
-                              } ?>" href="#">GUIDA UNICA</a>
+                              } ?>" href="#">CONVENZIONA IL TUO LABORATORIO</a>
         </li>
         <li class="nav-item">
           <a class="nav-link <?php if ($page_id == 3) {
                                 echo "active";
-                              } ?>" href="#">CONVENZIONA IL TUO LABORATORIO</a>
+                              } ?>" href="#">FAQ</a>
         </li>
+        
 
         <li class="nav-item">
           <a class="nav-link" id="login" data-toggle="modal" data-target="#exampleModal" href="#">LOGIN</a>
@@ -72,21 +73,21 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade"  id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" style="margin:auto;" id="exampleModalLabel">Login</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+      <div class="modal-header white-text">
+        <h5 class="modal-title" style="margin:auto;" id="exampleModalLabel">Effettua il login</h5>
+        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"
           style="border: 0;background-color: #fff;font-size: 1.5rem;">
-          <span aria-hidden="true">&times;</span>
+          <span aria-hidden="true">&times;</span> -->
+          <button type="button" class="btn-close btn-close-white" data-dismiss="modal" aria-label="Close"></button>
+
         </button>
 
       </div>
       <div class="modal-body">
-        Modificare testo
-        <br><br>
         <?php
 if(isset($_POST['submit'])) {
     
@@ -134,15 +135,13 @@ if($result->num_rows > 0) {
 
  else if(!isset($_SESSION["valid"])) { ?>
         <form method="post" action="index.php">
-          <div class="form-group">
-            <label for="exampleInputEmail1">Indirizzo email</label>
-            <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-              placeholder="Inserisci il tuo indirizzo email">
+          <div class="form-group input-form">
+            <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <label for="exampleInputEmail1">Indirizzo email</label>
           </div>
-          <div class="form-group">
+          <div class="form-group input-form">
+            <input type="password" name="password" class="form-control" id="exampleInputPassword1">
             <label for="exampleInputPassword1">Password</label>
-            <input type="password" name="password" class="form-control" id="exampleInputPassword1"
-              placeholder="Inserisci la tua password">
           </div>
           <input type="hidden" name="submit">
           <!--
@@ -150,7 +149,7 @@ if($result->num_rows > 0) {
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label" for="exampleCheck1">Check me out</label>
           </div> -->
-          <button type="submit" class="btn btn-primary bottone-accedi">Accedi</button>
+          <button type="submit" class="btn btn-outline-primary bottone-accedi">Accedi</button>
         </form>
         <?php } ?>
       </div>
