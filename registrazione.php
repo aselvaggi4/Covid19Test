@@ -1,4 +1,6 @@
-<?php include("sessioni.php"); ?>
+<?php include("sessioni.php"); 
+    require_once('model/user_db.php');
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +39,7 @@
             echo "come medico di base";
         }
             ?></h3>
-        <form method="POST" action="registrazione-completata" style="text-align:center">
+        <form method="POST" action="registrazione-completata.php" style="text-align:center">
             
                 <div class="row">
                     <div class="col-6 input-form">
@@ -81,9 +83,9 @@
                         <?php if ($tipoUtente == 1) { echo 
                 "<input type='text' class='form-control' name='CF' id='CF'  aria-label='Codice fiscale' required><label>Codice Fiscale</label>";
                  } else if ($tipoUtente == 2) { echo 
-                    "<input type='text' class='form-control' name='IVA' id='IVA' aria-label='Partita IVA' required><label>Partita IVA</label>";
+                    "<input type='text' class='form-control' name='CF' id='CF' aria-label='Partita IVA' required><label>Partita IVA</label>";
                  } else if ($tipoUtente == 3) { echo
-                    "<input type='text' class='form-control' name='CR' id='CR' aria-label='Codice regionale' required><label>Codice Regionale</label>";
+                    "<input type='text' class='form-control' name='CF' id='CF' aria-label='Codice regionale' required><label>Codice Regionale</label>";
                  }
                 ?>
                     </div>
@@ -98,13 +100,22 @@
                             <label>Password</label>
                     </div>
                     <input type="hidden" id="tipo_utente" name="tipo_utente" value="<?php echo $tipoUtente; ?>">
-
+                    <input type="hidden" name="submit">
                 </div>
 
                 <button type="submit" class="btn btn-outline-primary">Conferma</button>
                 <button type="button" class="btn btn-outline-danger" onclick="history.back()">Annulla</button>
         </form>
     </div>
+
+    <?php // if(isset($_POST['submit'])) {
+
+       
+
+       // echo "<script>alert('Registrazione effettuata!')</script>";
+   // }
+
+    ?>
     <?php include ("footer-include.php"); ?>
 
 </body>

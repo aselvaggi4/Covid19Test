@@ -28,8 +28,6 @@
                                 echo "active";
                               } ?>" href="#">FAQ</a>
         </li>
-        
-
         <li class="nav-item">
           <a class="nav-link" id="login" data-toggle="modal" data-target="#exampleModal" href="#">LOGIN</a>
         </li>
@@ -70,8 +68,6 @@
   </div>
 </nav>
 
-
-
 <!-- Modal -->
 <div class="modal fade"  id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
@@ -79,9 +75,7 @@
     <div class="modal-content">
       <div class="modal-header white-text">
         <h5 class="modal-title" style="margin:auto;" id="exampleModalLabel">Effettua il login</h5>
-        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"
-          style="border: 0;background-color: #fff;font-size: 1.5rem;">
-          <span aria-hidden="true">&times;</span> -->
+        
           <button type="button" class="btn-close btn-close-white" data-dismiss="modal" aria-label="Close"></button>
 
         </button>
@@ -89,48 +83,20 @@
       </div>
       <div class="modal-body">
         <?php
-if(isset($_POST['submit'])) {
+        //modifica submit con accesso!!
+if(isset($_POST['accesso'])) {
     
-$servername="localhost";
-$username = "root";
-$password = "";
-$dbname = "sitotamponi";
+  $gestioneUtente = new GestioneUtente();
+  
+  try {
+    $gestioneUtente->loginUtente($_POST['email'], $_POST['password']);
+  } catch (Exception $e) {
+    echo "<script>alert('I dati inseriti sono errati!')</script>";
+  }
 
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-$email = $_POST["email"];
-$psw = $_POST["password"];
-
-
-if($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-$sql = "SELECT id, tipo_utente, Nome, email, password FROM utente WHERE email = '$email' AND password = '$psw'";
-
-$result = $conn->query($sql);
-
-if($result->num_rows > 0) {
-
-    while($row = $result->fetch_assoc()) {
-
-      $_SESSION["valid"] = true;
-      $_SESSION["tipo_utente"] = $row["tipo_utente"];
-      $_SESSION["email"] = $row["email"];
-      $_SESSION["id"] = $row["id"];
-      $_SESSION["nome"] = $row["Nome"];
-
-      echo "<meta http-equiv='refresh' content='0'>";
-
-    }
-
-} else {
-  echo "<script>alert('I dati inseriti sono errati!');</script>";
   echo "<meta http-equiv='refresh' content='0'>";
 
-}
-  } 
+} 
     // Display the Form and the Submit Button
 
  else if(!isset($_SESSION["valid"])) { ?>
@@ -143,7 +109,7 @@ if($result->num_rows > 0) {
             <input type="password" name="password" class="form-control" id="exampleInputPassword1">
             <label for="exampleInputPassword1">Password</label>
           </div>
-          <input type="hidden" name="submit">
+          <input type="hidden" name="accesso">
           <!--
           <div class="form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheck1">

@@ -1,4 +1,7 @@
-<?php include("sessioni.php"); ?>
+<?php include("sessioni.php"); 
+    require_once('model/user_db.php');
+    require_once('controller/gestione_utente.php');
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,11 +25,10 @@
 
 <body style="background: linear-gradient(#141e30, #243b55);">
 
-   <?php include ("navbar.php"); ?>
-
-   <?php/* 
+   <?php include ("navbar.php");
+   
    // Check delle variabili di sessione
-   var_dump($_SESSION); */?>
+   var_dump($_SESSION); ?>
 
    <div class="row ricerca">
       <div class="container-fluid ">
