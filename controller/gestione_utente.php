@@ -6,14 +6,14 @@ class GestioneUtente {
 
     function loginUtente($usr, $psw) {
         
-        $result = getUser($usr, $psw);
-        echo $result;
-        if($result !== false) {
+        $risultato = getUser($usr, $psw);
+        
+        if($risultato !== false) {
             validateSession(
-                $result->tipo_utente, 
-                $result->id, 
-                $result->email, 
-                $result->nome
+                $risultato->tipo_utente, 
+                $risultato->id, 
+                $risultato->email, 
+                $risultato->nome
             );
         } else {
             throw new Exception("Dati errati!");

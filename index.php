@@ -28,7 +28,7 @@
    <?php include ("navbar.php");
    
    // Check delle variabili di sessione
-   var_dump($_SESSION); ?>
+   //var_dump($_SESSION); ?>
 
    <div class="row ricerca">
       <div class="container-fluid ">

@@ -4,6 +4,7 @@
     function getLaboratori($regione, $provincia, $citta, $data ) {
 
         global $db;
+
         $query1 = "SELECT * FROM laboratori WHERE citta = '$citta'";
         $query2 = "SELECT * FROM laboratori WHERE provincia = '$provincia' AND NOT citta = '$citta'";
         $query3 = "SELECT * FROM laboratori WHERE regione = '$regione' AND NOT citta = '$citta' AND NOT provincia = '$provincia'";
@@ -29,8 +30,6 @@
                 $laboratori[] = $row;
             }
             //Se nella provincia ci sono meno di 4 laboratori -> cerca laboratori per regione
-            //PROVA A CREARE ARRAY ASSOCIATIVO E APPEND TUTTI I VALORI PER POI ESEGUIRE UN UNICO RETURN
-            // -> FOREACH LABORATORIO AS LABORATORIO (?)
             if($count2 < 4) {
                 $statement3->execute();
                 $count3 = $statement3->rowCount();

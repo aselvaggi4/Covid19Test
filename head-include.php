@@ -4,5 +4,5 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 <link href="styles.css" rel="stylesheet">
-
+<script type='text/javascript' src='config.js'></script>
 

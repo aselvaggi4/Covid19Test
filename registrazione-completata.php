@@ -30,7 +30,6 @@
     $gestioneUtente = new GestioneUtente();
     
     try {
-
         $gestioneUtente->registrazioneUtente($_POST['tipo_utente'], $_POST['nome'], $_POST['cognome'], $_POST['citta'], $_POST['provincia'], 
         $_POST['cap'], $_POST['indirizzo'], $_POST['CF'], $_POST['tel'], $_POST['email'], $_POST['password']);
 

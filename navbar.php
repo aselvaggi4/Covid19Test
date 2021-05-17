@@ -34,12 +34,11 @@
 
 
       </ul>
-      
       <?php 
       
       // Se la sessione non è attiva stampa il bottone per registrarsi
       if(!isset($_SESSION["valid"])) { echo  '
-      <form method="get" action="registrazione.php">
+      <form method="get" action="registrazione.php" class="logout">
         <button type="submit" class="btn btn-light btn-navbar dropdown-toggle" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false" href="registrazione">REGISTRATI</button>
         <div class="dropdown-menu">
@@ -53,7 +52,7 @@
         </div>
       </form>
        '; } else echo 
-       '<form method="POST" action="index"><button type="submit" name="logout" class="btn btn-danger">Logout</button></form>'; 
+       '<form method="POST" action="index" class="logout"><button type="submit" name="logout" class="btn btn-danger">Logout</button></form>'; 
        
        if(isset($_POST['logout'])) {
 

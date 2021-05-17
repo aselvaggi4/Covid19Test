@@ -13,7 +13,8 @@
         $statement->execute();
         
         $count = $statement->rowCount();
-        if($count > 0) {
+
+        if($count == 1) {
 
             $result = $statement->fetch(PDO::FETCH_LAZY);
             return $result;
@@ -57,9 +58,7 @@
 
         } else {
             return false;
-        }
-
-        
+        } 
     }
 
 ?>
