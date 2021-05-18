@@ -48,7 +48,7 @@
         try {
             $gestioneLab->registraLaboratorio($_POST['regione'],$_POST['provincia'], $_POST['citta'],$_POST['indirizzo'],$iva = $_POST['iva'], $_POST['email'], $_POST['nome'], $_POST['password']);
         } catch (Exception $e) {
-            echo "mannagg r a maronn";
+            echo $e;
         }
 }
     ?>

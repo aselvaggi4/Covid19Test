@@ -174,7 +174,7 @@ body {
 }
 
 .ricerca {
-    background-image: url(img/test-tube.png);
+    background-image: url(img/saidasdasd.jpg);
     background-position: center;
     background-repeat: no-repeat;
     padding-top: 100px;
@@ -292,6 +292,10 @@ input:-webkit-autofill:active {
     padding-right: 0;
     padding-left: 0;
 }
+.info_content {
+    color:#0b111a !important;
+}
+
 /*-------------- MEDIA QUERIES ----------------*/
 @media (max-width: 1440px) {
     .container.form-registrazione {

@@ -71,7 +71,7 @@ window.onload = loadScript;
                                     
                                     echo $laboratorio['via'].', '.$laboratorio['citta'] . ', ' . $laboratorio['provincia'];
                                     //$latlng = array($laboratorio['lat'], $laboratorio['lng']);
-                                    $latlng[$contatore] = array($laboratorio['nome'],$laboratorio['lat'],$laboratorio['lng']);
+                                    $latlng[$contatore] = array($laboratorio['nome'],$laboratorio['lat'],$laboratorio['lng'],$laboratorio['via']);
                                     $contatore ++;
                                 ?>
                             </li>
@@ -114,9 +114,7 @@ function initMap() {
         <?php 
             $sizeArray = count($latlng);
             for ($riga = 0; $riga < $sizeArray; $riga++) {
-                for ($col = 0; $col < 3; $col++) {
-                    echo '["'.$latlng[$riga][0].'", '.$latlng[$riga][1].', '.$latlng[$riga][2].'],'; 
-                }
+                echo '["'.$latlng[$riga][0].'", '.$latlng[$riga][1].', '.$latlng[$riga][2].'],'; 
               }  
         ?>
     ];
@@ -128,8 +126,8 @@ function initMap() {
             for ($row = 0; $row < $sizeArray; $row++) {
                  ?>
                 ['<div class="info_content">' +
-                '<h3><?php echo $latlng[$row][0]; ?></h3>' +
-                '<p><?php echo "info" ?></p>' + '</div>'],
+                '<h5><?php echo $latlng[$row][0]; ?></h5>' +
+                '<p><?php echo $latlng[$row][3]; ?></p>' + '</div>'],
         <?php } ?>
     ];
         
