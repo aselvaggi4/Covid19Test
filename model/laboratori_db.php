@@ -44,5 +44,47 @@
         return $laboratori;
     }
 
+    function registerLab($lab_email, $password, $regione, $provincia, $citta, $via, $iva, $nome) {
 
+        global $db;
+        // Call API per calcolare automaticamente latitudine e longitudine di un laboratorio
+        $queryString = http_build_query([
+            'access_key' => '190966a6a335f1f8d720580139d58698',
+            'query' => $via." ".$regione,
+            'region' => $citta,
+            'output' => 'json',
+            'limit' => 1,
+          ]);
+        print_r($queryString);
+        $ch = curl_init(sprintf('%s?%s', 'http://api.positionstack.com/v1/forward', $queryString));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+          
+        $json = curl_exec($ch);
+          
+        curl_close($ch);
+          
+        $apiResult = json_decode($json, true);
+        print_r($apiResult);
+        $lat = $apiResult['data'][0]['latitude'];
+        $lng = $apiResult['data'][0]['longitude'];
+        
+        $sql = "SELECT * FROM laboratori WHERE username = '$lab_email'";
+
+        $check = $db->prepare($sql);
+        $check->execute();
+
+        $count = $check->rowCount(); 
+          echo "<br><br>".$count;
+        if($count == 0) {
+            
+            $query = "INSERT INTO laboratori (lat, lng, regione, provincia, citta, via, iva, username, password, nome) VALUES ('$lat', '$lng', '$regione','$provincia', '$citta', '$via', '$iva', '$lab_email', '$password', '$nome')";
+           
+            $statement = $db->prepare($query);
+            $statement->execute();
+            return true;
+
+        } else {
+        return false;
+    }
+}
 ?>

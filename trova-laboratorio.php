@@ -50,8 +50,8 @@ window.onload = loadScript;
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-5 ricerca-lab" style="height:100vh; overflow: auto; color: black; background-color:#fff;">
-                <h3>Ricerca laboratori: <?php echo $_GET["citta"]; ?></h3>
+            <div class="col-md-5 ricerca-lab" style="height:100vh; overflow: auto; color: black; background-color:#fff;">
+                <h3 style="padding-top:15px; padding-bottom:15px;">Ricerca laboratori: <span style="color: #0a58ca;"><?php echo $_GET["citta"]; ?></span></h3>
 
                 <?php  
                     $laboratori = getLaboratori($_GET["regione"], $_GET["provincia"], $_GET["citta"], $_GET["data"]);
@@ -81,7 +81,7 @@ window.onload = loadScript;
 
                 <?php }  ?>
             </div>
-            <div class="col-7">
+            <div class="col-md-7 mappe">
                 <?php 
                     $sizeArray = count($latlng);
                    

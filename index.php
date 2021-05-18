@@ -41,17 +41,17 @@
    </div>
    <div class="container">
       <div class="row" style="padding-top:50px;">
-         <div class="col-4 white-text centrato " >
+         <div class="col-md-4 white-text centrato " >
             <i class="fas fa-user-secret " style="font-size:60px;"></i>
             <h3 style="margin:15px;">PRIVACY</h3>
             <p >Covid-19 Test Booking adotta adeguate misure di sicurezza per proteggere la privacy di ogni utente.</p>
          </div>
-         <div class="col-4 white-text centrato" >
+         <div class="col-md-4 white-text centrato" >
             <i class="fas fa-user-secret " style="font-size:60px;"></i>
             <h3 style="margin:15px;">PRIVACY</h3>
             <p>Covid-19 Test Booking adotta adeguate misure di sicurezza per proteggere la privacy di ogni utente.</p>
          </div>
-         <div class="col-4 white-text centrato" >
+         <div class="col-md-4 white-text centrato" >
             <i class="fas fa-user-secret " style="font-size:60px;"></i>
             <h3 style="margin:15px;">PRIVACY</h3>
             <p>Covid-19 Test Booking adotta adeguate misure di sicurezza per proteggere la privacy di ogni utente.</p>

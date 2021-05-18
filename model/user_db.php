@@ -51,9 +51,13 @@
                 $query = "INSERT INTO utente (tipo_utente, Nome, Cognome, citta, provincia, cap, Indirizzo, tel, IVA, email, password) VALUES ('$tipo_utente','$nome', '$cognome', '$citta', '$provincia', '$cap', '$indirizzo', '$tel', '$CF', '$user_email', '$user_psw')";        
             } else if($tipo_utente == 3) {
                 $query = "INSERT INTO utente (tipo_utente, Nome, Cognome, citta, provincia, cap, Indirizzo, tel, Codice_regionale, email, password) VALUES ('$tipo_utente','$nome', '$cognome', '$citta', '$provincia', '$cap', '$indirizzo', '$tel', '$CF', '$user_email', '$user_psw')";
+            } else if($tipo_utente == 4) {
+                $query = "INSERT INTO utente (tipo_utente, Nome, citta, provincia, cap, Indirizzo, tel, email, password) VALUES ('$tipo_utente', '$nome', '$citta', '$provincia', '$cap', '$indirizzo', '$tel', '$user_email', '$user_psw')";
+                echo"AOOOOOOOOO";
             }
             $statement = $db->prepare($query);
             $statement->execute();
+            
             return true;
 
         } else {

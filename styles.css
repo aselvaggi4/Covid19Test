@@ -177,10 +177,20 @@ body {
     background-image: url(img/test-tube.png);
     background-position: center;
     background-repeat: no-repeat;
-
-
     padding-top: 100px;
-    padding-bottom: 100px;
+    padding-bottom: 200px;
+}
+
+.row.ricerca {
+    --bs-gutter-x: 0;
+}
+
+.barra-ricerca input:-webkit-autofill,
+.barra-ricerca input:-webkit-autofill:hover,
+.barra-ricerca input:-webkit-autofill:focus,
+.barra-ricerca input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color:black !important;
 }
 
 
@@ -278,7 +288,10 @@ input:-webkit-autofill:active {
 .ricerca-lab img {
     border-radius: 20px;
 }
-
+.mappe {
+    padding-right: 0;
+    padding-left: 0;
+}
 /*-------------- MEDIA QUERIES ----------------*/
 @media (max-width: 1440px) {
     .container.form-registrazione {
