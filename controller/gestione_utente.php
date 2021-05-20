@@ -2,14 +2,16 @@
 
 require_once('model/user_db.php');
 
-class GestioneUtente {
+class UtenteController {
 
     function loginUtente($usr, $psw) {
         
-        $risultato = getUser($usr, $psw);
+        $utente = new Utente();
+
+        $risultato = $utente->getUtente($usr, $psw);
         
         if($risultato !== false) {
-            validateSession(
+            $utente->validaSessione(
                 $risultato->tipo_utente, 
                 $risultato->id, 
                 $risultato->email, 
@@ -22,11 +24,13 @@ class GestioneUtente {
 
     function registrazioneUtente($tipo_utente, $nome, $cognome, $citta, $provincia, $cap, $indirizzo, $CF, $tel, $user_email, $user_psw) {
         
-        $check = registerUser($tipo_utente, $nome, $cognome, $citta, $provincia, $cap, $indirizzo, $CF, $tel, $user_email, $user_psw);
+        $utente = new Utente();
+
+        $check = $utente->setUtente($tipo_utente, $nome, $cognome, $citta, $provincia, $cap, $indirizzo, $CF, $tel, $user_email, $user_psw);
 
         if ($check == true) {
-            $result = getUser($user_email, $user_psw);
-            validateSession($tipo_utente, $result->id, $user_email, $nome);
+            $result = $utente->getUtente($user_email, $user_psw);
+            $utente->validaSessione($tipo_utente, $result->id, $user_email, $nome);
             return true;
 
         } else {

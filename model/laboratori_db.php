@@ -1,7 +1,10 @@
 <?php
     require_once('db.php');
 
-    function getLaboratori($regione, $provincia, $citta, $data ) {
+class Laboratorio {
+
+    //Ricerca laboratori
+    function getLaboratori($regione, $provincia, $citta, $data) {
 
         global $db;
 
@@ -44,7 +47,8 @@
         return $laboratori;
     }
 
-    function registerLab($lab_email, $password, $regione, $provincia, $citta, $via, $iva, $nome) {
+    //Registrazione Laboratori
+    function setLab($lab_email, $password, $regione, $provincia, $citta, $via, $iva, $nome) {
 
         global $db;
         // Call API per calcolare automaticamente latitudine e longitudine di un laboratorio
@@ -85,6 +89,7 @@
 
         } else {
         return false;
-    }
+        }
+    }      
 }
 ?>

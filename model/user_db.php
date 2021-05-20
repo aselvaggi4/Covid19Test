@@ -1,7 +1,9 @@
 <?php 
     require_once('db.php');
+    // Cerca utente nel DB / Login
+    class Utente {
 
-    function getUser($user_email, $user_psw) {
+    function getUtente($user_email, $user_psw) {
         
         global $db;
 
@@ -24,8 +26,8 @@
         }
         
     }
-
-    function validateSession($tipo_utente, $id, $email, $nome) {
+    // Inizializza le variabili di sessione
+    function validaSessione($tipo_utente, $id, $email, $nome) {
 
         $_SESSION['valid'] = true;
         $_SESSION["tipo_utente"] = $tipo_utente;
@@ -34,8 +36,8 @@
         $_SESSION["nome"] = $nome;
 
     }
-
-    function registerUser($tipo_utente, $nome, $cognome, $citta, $provincia, $cap, $indirizzo, $CF, $tel, $user_email, $user_psw) {
+    // Crea un utente
+    function setUtente($tipo_utente, $nome, $cognome, $citta, $provincia, $cap, $indirizzo, $CF, $tel, $user_email, $user_psw) {
         global $db;
 
         $sql = "SELECT * FROM utente WHERE email = '$user_email'";
@@ -53,7 +55,6 @@
                 $query = "INSERT INTO utente (tipo_utente, Nome, Cognome, citta, provincia, cap, Indirizzo, tel, Codice_regionale, email, password) VALUES ('$tipo_utente','$nome', '$cognome', '$citta', '$provincia', '$cap', '$indirizzo', '$tel', '$CF', '$user_email', '$user_psw')";
             } else if($tipo_utente == 4) {
                 $query = "INSERT INTO utente (tipo_utente, Nome, citta, provincia, cap, Indirizzo, tel, email, password) VALUES ('$tipo_utente', '$nome', '$citta', '$provincia', '$cap', '$indirizzo', '$tel', '$user_email', '$user_psw')";
-                echo"AOOOOOOOOO";
             }
             $statement = $db->prepare($query);
             $statement->execute();
@@ -64,5 +65,7 @@
             return false;
         } 
     }
+}
+
 
 ?>

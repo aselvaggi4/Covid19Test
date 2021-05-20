@@ -85,7 +85,7 @@
         //modifica submit con accesso!!
 if(isset($_POST['accesso'])) {
     
-  $gestioneUtente = new GestioneUtente();
+  $gestioneUtente = new UtenteController();
   
   try {
     $gestioneUtente->loginUtente($_POST['email'], $_POST['password']);

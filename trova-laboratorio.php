@@ -1,5 +1,6 @@
 <?php include("sessioni.php"); 
-require_once('model/laboratori_db.php');
+require_once('controller/gestione_lab.php');
+
 ?>
 
 <!DOCTYPE html>
@@ -54,7 +55,10 @@ window.onload = loadScript;
                 <h3 style="padding-top:15px; padding-bottom:15px;">Ricerca laboratori: <span style="color: #0a58ca;"><?php echo $_GET["citta"]; ?></span></h3>
 
                 <?php  
-                    $laboratori = getLaboratori($_GET["regione"], $_GET["provincia"], $_GET["citta"], $_GET["data"]);
+                    
+                    $lab = new LaboratorioController();
+
+                    $laboratori = $lab->ricercaLaboratori($_GET["regione"], $_GET["provincia"], $_GET["citta"], $_GET["data"]);
                     
                     foreach($laboratori as $laboratorio) {
                         

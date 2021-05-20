@@ -39,7 +39,7 @@
             echo "come medico di base";
         }
             ?></h3>
-        <form method="POST" action="registrazione-completata.php" style="text-align:center">
+        <form method="POST" action="conferma-registrazione.php" style="text-align:center">
             
                 <div class="row">
                     <div class="col-6 input-form">
