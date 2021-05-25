@@ -9,17 +9,18 @@ class LaboratorioController {
         
         $lab = new Utente();
         $setLab = new Laboratorio();
-        $risultato  = $setLab->setLab($lab_email, $lab_psw, $regione, $provincia, $citta, $via, $iva, $nome);
+        
+        $risultato  = $setLab->setLaboratori($lab_email, $lab_psw, $regione, $provincia, $citta, $via, $iva, $nome);
         echo $risultato."<br><br>";
         if($risultato !== false) {
             
             $tipo_utente = 4;
             $cognome = " ";
-            $CF = " ";
+            $identificatore = " ";
             $cap = " ";
             $tel = " ";
         
-            $controllo = $lab->setUtente($tipo_utente, $nome, $cognome, $citta, $provincia, $cap, $via, $CF, $tel, $lab_email, $lab_psw);
+            $controllo = $lab->setUtente($tipo_utente, $nome, $cognome, $citta, $provincia, $cap, $via, $identificatore, $tel, $lab_email, $lab_psw);
             echo "<span style='color:red'>".$controllo."</span>";
 
             if ($controllo !== 0) {

@@ -1,7 +1,8 @@
 <?php 
     require_once('db.php');
     // Cerca utente nel DB / Login
-    class Utente {
+
+class Utente {
 
     function getUtente($user_email, $user_psw) {
         
@@ -37,7 +38,7 @@
 
     }
     // Crea un utente
-    function setUtente($tipo_utente, $nome, $cognome, $citta, $provincia, $cap, $indirizzo, $CF, $tel, $user_email, $user_psw) {
+    function setUtente($tipo_utente, $nome, $cognome, $citta, $provincia, $cap, $indirizzo, $identificatore, $tel, $user_email, $user_psw) {
         global $db;
 
         $sql = "SELECT * FROM utente WHERE email = '$user_email'";
@@ -48,11 +49,11 @@
 
         if($count == 0) {
             if ($tipo_utente == 1 ) {
-                $query = "INSERT INTO utente (tipo_utente, Nome, Cognome, citta, provincia, cap, Indirizzo, tel, CF, email, password) VALUES ('$tipo_utente','$nome', '$cognome', '$citta', '$provincia', '$cap', '$indirizzo', '$tel', '$CF', '$user_email', '$user_psw')";
+                $query = "INSERT INTO utente (tipo_utente, Nome, Cognome, citta, provincia, cap, Indirizzo, tel, CF, email, password) VALUES ('$tipo_utente','$nome', '$cognome', '$citta', '$provincia', '$cap', '$indirizzo', '$tel', '$identificatore', '$user_email', '$user_psw')";
             } else if($tipo_utente == 2) {
-                $query = "INSERT INTO utente (tipo_utente, Nome, Cognome, citta, provincia, cap, Indirizzo, tel, IVA, email, password) VALUES ('$tipo_utente','$nome', '$cognome', '$citta', '$provincia', '$cap', '$indirizzo', '$tel', '$CF', '$user_email', '$user_psw')";        
+                $query = "INSERT INTO utente (tipo_utente, Nome, Cognome, citta, provincia, cap, Indirizzo, tel, IVA, email, password) VALUES ('$tipo_utente','$nome', '$cognome', '$citta', '$provincia', '$cap', '$indirizzo', '$tel', '$identificatore', '$user_email', '$user_psw')";        
             } else if($tipo_utente == 3) {
-                $query = "INSERT INTO utente (tipo_utente, Nome, Cognome, citta, provincia, cap, Indirizzo, tel, Codice_regionale, email, password) VALUES ('$tipo_utente','$nome', '$cognome', '$citta', '$provincia', '$cap', '$indirizzo', '$tel', '$CF', '$user_email', '$user_psw')";
+                $query = "INSERT INTO utente (tipo_utente, Nome, Cognome, citta, provincia, cap, Indirizzo, tel, Codice_regionale, email, password) VALUES ('$tipo_utente','$nome', '$cognome', '$citta', '$provincia', '$cap', '$indirizzo', '$tel', '$identificatore', '$user_email', '$user_psw')";
             } else if($tipo_utente == 4) {
                 $query = "INSERT INTO utente (tipo_utente, Nome, citta, provincia, cap, Indirizzo, tel, email, password) VALUES ('$tipo_utente', '$nome', '$citta', '$provincia', '$cap', '$indirizzo', '$tel', '$user_email', '$user_psw')";
             }

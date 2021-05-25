@@ -82,7 +82,7 @@
       </div>
       <div class="modal-body">
         <?php
-        //modifica submit con accesso!!
+        
 if(isset($_POST['accesso'])) {
     
   $gestioneUtente = new UtenteController();

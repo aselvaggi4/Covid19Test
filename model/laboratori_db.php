@@ -48,7 +48,7 @@ class Laboratorio {
     }
 
     //Registrazione Laboratori
-    function setLab($lab_email, $password, $regione, $provincia, $citta, $via, $iva, $nome) {
+    function setLaboratori($lab_email, $password, $regione, $provincia, $citta, $via, $iva, $nome) {
 
         global $db;
         // Call API per calcolare automaticamente latitudine e longitudine di un laboratorio
