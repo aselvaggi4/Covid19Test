@@ -21,7 +21,7 @@
         <li class="nav-item">
           <a class="nav-link <?php if ($page_id == 2) {
                                 echo "active";
-                              } ?>" href="#">CONVENZIONA IL TUO LABORATORIO</a>
+                              } ?>" href="convenziona-laboratorio">CONVENZIONA IL TUO LABORATORIO</a>
         </li>
         <li class="nav-item">
           <a class="nav-link <?php if ($page_id == 3) {

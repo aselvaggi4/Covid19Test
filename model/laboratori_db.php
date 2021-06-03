@@ -48,7 +48,7 @@ class Laboratorio {
     }
 
     //Registrazione Laboratori
-    function setLaboratori($lab_email, $password, $regione, $provincia, $citta, $via, $iva, $nome) {
+    function setLaboratori($lab_email, $password, $regione, $provincia, $citta, $via, $iva, $nome, $img, $telefono, $costo_molecolare, $costo_antigenico) {
 
         global $db;
         // Call API per calcolare automaticamente latitudine e longitudine di un laboratorio
@@ -81,7 +81,7 @@ class Laboratorio {
           echo "<br><br>".$count;
         if($count == 0) {
             
-            $query = "INSERT INTO laboratori (lat, lng, regione, provincia, citta, via, iva, username, password, nome) VALUES ('$lat', '$lng', '$regione','$provincia', '$citta', '$via', '$iva', '$lab_email', '$password', '$nome')";
+            $query = "INSERT INTO laboratori (lat, lng, telefono, regione, provincia, citta, via, iva, username, password, nome, img, costo_antigenico, costo_molecolare) VALUES ('$lat', '$lng','$telefono', '$regione','$provincia', '$citta', '$via', '$iva', '$lab_email', '$password', '$nome','$img', '$costo_antigenico', '$costo_molecolare')";
            
             $statement = $db->prepare($query);
             $statement->execute();

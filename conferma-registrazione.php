@@ -1,5 +1,6 @@
 <?php include("sessioni.php"); 
     require_once('controller/gestione_utente.php');
+    require_once('controller/gestione_lab.php');
 
 ?>
 
@@ -30,10 +31,21 @@
     $gestioneUtente = new UtenteController();
     
     try {
-        $gestioneUtente->registrazioneUtente($_POST['tipo_utente'], $_POST['nome'], $_POST['cognome'], $_POST['citta'], $_POST['provincia'], 
-        $_POST['cap'], $_POST['indirizzo'], $_POST['CF'], $_POST['tel'], $_POST['email'], $_POST['password']);
+        if($_POST['tipo_utente'] != 4) {
+            $gestioneUtente->registrazioneUtente($_POST['tipo_utente'], $_POST['nome'], $_POST['cognome'], $_POST['citta'], $_POST['provincia'], 
+            $_POST['cap'], $_POST['indirizzo'], $_POST['CF'], $_POST['tel'], $_POST['email'], $_POST['password']);
 
-        $caught = false;
+            $caught = false;
+        } else if ($_POST['tipo_utente'] == 4) {
+            if($_FILES['immagine_lab']['name']){
+                move_uploaded_file($_FILES['immagine_lab']['tmp_name'], "lab_img/".$_FILES['immagine_lab']['name']);
+                $img="lab_img/".$_FILES['immagine_lab']['name'];
+                $gestioneLab = new LaboratorioController();
+                $gestioneLab->registraLaboratorio($_POST['regione'],$_POST['provincia'], $_POST['citta'],$_POST['indirizzo'],$_POST['iva'], $_POST['email'], $_POST['nome'], $_POST['password'], $img, $_POST['tel'], $_POST['costo_molecolare'], $_POST['costo_antigenico']);
+
+                $caught = false;
+            }
+        }
 
     } catch (Exception $e) {
         
@@ -62,7 +74,7 @@
             </form>
         </div>
    </div>
-    <?php }
+    <?php } 
    
    include ("footer-include.php");
   

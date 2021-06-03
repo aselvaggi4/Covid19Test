@@ -39,7 +39,9 @@
             <h2><?php  echo $laboratorio->nome;  ?></h2>
             <p><?php echo $laboratorio->citta. ", ". $laboratorio->regione .", " . $laboratorio->via;?></p>
             <div class="col-8 ">
-                <img class=" shadow mb-5 " src="img/covid19-test-corona-virus.jpg"
+                <img class=" shadow mb-5 " <?php if($laboratorio->img != NULL) {
+                    echo 'src="'.$laboratorio->img.'"'; 
+                } else echo 'src="img/covid19-test-corona-virus.jpg"'?> src="img/covid19-test-corona-virus.jpg"
                     style="height: 450px; object-fit: none; border-radius: 15px;">
 
             </div>

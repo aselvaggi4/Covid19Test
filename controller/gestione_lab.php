@@ -5,12 +5,13 @@ require_once('model/user_db.php');
 
 class LaboratorioController {
     //Registra laboratorio nel database dei lab, e lo registra come utente tipo 4
-    function registraLaboratorio($regione, $provincia, $citta, $via, $iva, $lab_email, $nome, $lab_psw) {
+    function registraLaboratorio($regione, $provincia, $citta, $via, $iva, $lab_email, $nome, $lab_psw, $img, $telefono, $costo_molecolare, $costo_antigenico) {
         
         $lab = new Utente();
         $setLab = new Laboratorio();
         
-        $risultato  = $setLab->setLaboratori($lab_email, $lab_psw, $regione, $provincia, $citta, $via, $iva, $nome);
+
+        $risultato  = $setLab->setLaboratori($lab_email, $lab_psw, $regione, $provincia, $citta, $via, $iva, $nome, $img, $telefono, $costo_molecolare, $costo_antigenico);
         echo $risultato."<br><br>";
         if($risultato !== false) {
             

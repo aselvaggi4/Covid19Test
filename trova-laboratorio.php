@@ -65,7 +65,7 @@ window.onload = loadScript;
                 <div class="row">
                 
                     <div class="col-5">
-                        <img src="img/test-tube.jpg" width="100%">
+                        <img src="<?php if($laboratorio['img'] != NULL) {echo $laboratorio['img'];} else echo 'img/test-tube.jpg';?>" width="100%">
                     </div>
                     <div class="col-7">
                         <ul class="list-group list-group-flush">
