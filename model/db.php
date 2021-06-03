@@ -1,6 +1,6 @@
 <?php
 
-$dsn ='mysql:host=localhost;dbname=sitotamponi';
+$dsn ='mysql:host=localhost;dbname=covid19test';
 $user= "root";
 $psw ="";
 
