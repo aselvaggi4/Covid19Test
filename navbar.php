@@ -99,7 +99,7 @@ if(isset($_POST['accesso'])) {
     // Display the Form and the Submit Button
 
  else if(!isset($_SESSION["valid"])) { ?>
-        <form method="post" action="index.php">
+        <form method="post" action="">
           <div class="form-group input-form">
             <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
               <label for="exampleInputEmail1">Indirizzo email</label>

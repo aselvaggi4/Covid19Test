@@ -45,7 +45,60 @@ class LaboratorioController {
             return false;
         }
     }
+    // Trova i dati di un laboratorio per restituirli alle pagine che necessitano i dati
+    function trovaLab($id) {
 
+        $trovaLab = new Laboratorio();
+        $laboratorio = $trovaLab->mostraLab($id);
+        
+        return $laboratorio;
+        
+    }
+    //Controlla la disponibilità di un laboratorio in particolare data per mostrare le date libere sulla vista
+    function controllaDisponibilita($id, $data) {
+        $date = new Laboratorio();
+        $orariOccupati = array();
+        $orariLavorativi = array(
+            0 => "09:00",
+            1 => "09:30",
+            2 => "10:00",
+            3 => "10:30",
+            4 => "11:00",
+            5 => "11:30",
+            6 => "12:00",
+            7 => "12:30",
+            8 => "13:00",
+            9 => "14:30",
+            10 => "15:00",
+            11 => "15:30",
+            12 => "16:00",
+            13 => "16:30",
+            14 => "17:00",
+            15 => "17:30"
+        );
+
+        $dateUtilizzate = $date->getDisponibilita($id, $data);
+        // Questa funzione recupera tutte le prenotazioni effettuate in un laboratorio in un dato giorno
+        if($dateUtilizzate == false) {
+            return $orariLavorativi;
+        } else {
+            // Controlla le date che riceviamo (nel formato YYYY:MM:DD // HH:MM:SS)-->
+            // Taglia la stringa rimuovendo la data ed i secondi-> così ci resta un orario nel formato HH:MM
+            // Confronta con un array di orari dalle 9 alle 18 con intervalli di 30 minuti (30 minuti per ogni tampone)
+            // Restituisce solo i valori dell'array non presenti nell'array che ci è tornato restituito 
+            foreach ($dateUtilizzate as $date) {
+                $orario = substr($date['orario'], -8, 5);
+                $orariOccupati[] = $orario;
+            }
+           // print_r($orariOccupati);
+            $orariDisponibili = array_diff($orariLavorativi, $orariOccupati);
+
+            //print_r($orariDisponibili);
+            
+            return $orariDisponibili;
+        }
+
+    }
 }
 
 

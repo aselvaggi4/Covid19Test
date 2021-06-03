@@ -40,6 +40,26 @@ class UtenteController {
         }
     }
 
+    function utenteEsistente($email, $CF, $nome, $cognome) {
+
+        $utente = new Utente();
+
+        $risultato = $utente->trovaUtente($email);
+        
+        if($risultato == false) {
+
+            $password = $utente->generaPassword();
+
+            $utenteInserito = $utente->registraUtente($email,$password, $CF, $nome, $cognome);
+
+            // Invia un email con la password appena registrata 
+            $utente->emailRegistrazione($email, $password, $nome, $cognome);
+            
+            return $utenteInserito;
+        } else {
+            return $risultato->id;
+        }
+    }
 }
 
 

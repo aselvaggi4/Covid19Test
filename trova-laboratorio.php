@@ -59,11 +59,11 @@ window.onload = loadScript;
                     $lab = new LaboratorioController();
 
                     $laboratori = $lab->ricercaLaboratori($_GET["regione"], $_GET["provincia"], $_GET["citta"], $_GET["data"]);
-                    
                     foreach($laboratori as $laboratorio) {
-                        
+                        echo "<a href='laboratorio?id=".$laboratorio['id']."'>"; 
                 ?>
                 <div class="row">
+                
                     <div class="col-5">
                         <img src="img/test-tube.jpg" width="100%">
                     </div>
@@ -81,8 +81,9 @@ window.onload = loadScript;
                             </li>
                         </ul>
                     </div>
+                    
                 </div>
-
+                </a>
                 <?php }  ?>
             </div>
             <div class="col-md-7 mappe">

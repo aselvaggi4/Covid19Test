@@ -236,7 +236,7 @@ label {
     transition: all 0.3s ease-in;
     transform: translateY(24px);
     pointer-events: none;
-  }
+}
 input:focus + label {
     transform: translateY(15px);
     color: #03e9f4;
@@ -265,10 +265,8 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
     transition: background-color 5000s ease-in-out 0s;
-    -webkit-text-fill-color: #fff !important;
+    -webkit-text-fill-color: #fff;
 }
-
-
 
 
 /*-------------- RICERCA LABORATORIO ----------------*/
@@ -294,6 +292,71 @@ input:-webkit-autofill:active {
 }
 .info_content {
     color:#0b111a !important;
+}
+.ricerca-lab > a {
+    text-decoration: none !important;
+}
+.ricerca-lab .row:hover, li:hover {
+    color:#fff;
+    background: rgba(97,157,248, 0.3) !important;
+}
+.ricerca-lab li {
+    background: transparent;
+}
+
+/*-------------- PAGINA LABORATORIO ----------------*/
+.pagina-lab {
+    padding: 20px;
+    color:#000;
+    background-color: #fff;
+    border-radius: 15px;
+    margin: 3rem auto;
+}
+
+.pagina-lab h2 {
+    font-weight: 400;
+}
+
+/*-------------- PAGINA PRENOTAZIONE ----------------*/
+
+.form-prenotazione input, .form-prenotazione select {
+    margin: 15px;
+    border-bottom: 3px solid;
+    background-color: transparent;
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px solid #000;
+    color:#000;
+}
+.form-prenotazione label {
+    color:#000;
+}
+
+#inputId input:-webkit-autofill {
+    -webkit-text-fill-color: #000 !important;
+}
+.form-prenotazione input:focus, .form-prenotazione select:focus {
+    background-color:transparent;
+    border-bottom: 1px solid #000;
+    color: #000;
+}
+
+
+/*-------------- PAGINA RIEPILOGO ----------------*/
+
+.pagina-riepilogo > * {
+    padding-left:0;
+    padding-right:0;
+}
+tr {
+    cursor:pointer;
+}
+
+/*---------------- DASHBOARD -------------------*/
+.dashboard-card {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 0.5rem;
 }
 
 /*-------------- MEDIA QUERIES ----------------*/
