@@ -54,8 +54,8 @@ class Laboratorio {
         // Call API per calcolare automaticamente latitudine e longitudine di un laboratorio
         $queryString = http_build_query([
             'access_key' => '190966a6a335f1f8d720580139d58698',
-            'query' => $via." ".$regione,
-            'region' => $citta,
+            'query' => $via." ".$citta . " " .$regione,
+           // 'region' => $citta,
             'output' => 'json',
             'limit' => 1,
           ]);
@@ -90,6 +90,45 @@ class Laboratorio {
         } else {
         return false;
         }
-    }      
+    }    
+    
+    //Mostra pagina laboratorio
+    function mostraLab($id) {
+        global $db;
+        $query = "SELECT * FROM laboratori WHERE id = '$id'";
+        
+        $statement = $db->prepare($query);
+        $statement->execute();
+    
+        $count = $statement->rowCount();
+        
+        if($count == 1) {
+
+            $row = $statement->fetch(PDO::FETCH_LAZY);
+            
+            return $row;
+        }
+    }
+
+    // Controlla la disponibilità di un laboratorio
+    function getDisponibilita($id, $data) {
+        global $db;
+        $query = "SELECT * FROM tampone WHERE data = '$data' AND laboratorio = '$id'";
+
+        $statement = $db->prepare($query);
+        $statement->execute();
+
+        $count = $statement->rowCount();
+        $dateUtilizzate = array();
+        if($count == 0) {
+            return false;
+        } else {
+            while($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+                $dateUtilizzate[] = $row;
+            }
+            return $dateUtilizzate;
+        }
+    }
 }
+
 ?>
