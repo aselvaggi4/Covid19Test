@@ -1,0 +1,74 @@
+	
+CREATE TABLE `utente` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `tipo_utente` int(1) NOT NULL,
+  `Nome` text NOT NULL,
+  `Cognome` text NOT NULL,
+  `citta` text NOT NULL,
+  `provincia` text NOT NULL,
+  `cap` int(10) NOT NULL,
+  `Indirizzo` varchar(50) NOT NULL,
+  `tel` int(12) NOT NULL,
+  `CF` varchar(16) DEFAULT NULL,
+  `IVA` varchar(50) DEFAULT NULL,
+  `Codice_regionale` varchar(50) DEFAULT NULL,
+  `email` varchar(30) NOT NULL,
+  `password` varchar(200) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4
+
+
+CREATE TABLE `laboratori` (
+  `id` int(3) NOT NULL AUTO_INCREMENT,
+  `lat` float(10,6) NOT NULL,
+  `lng` float(10,6) NOT NULL,
+  `regione` text NOT NULL,
+  `provincia` text NOT NULL,
+  `citta` text NOT NULL,
+  `via` text NOT NULL,
+  `iva` varchar(30) NOT NULL,
+  `username` text NOT NULL,
+  `password` varchar(25) NOT NULL,
+  `nome` text NOT NULL,
+  `costo_antigenico` float NOT NULL,
+  `costo_molecolare` float NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4
+Query results operations
+
+CREATE TABLE `prenotazioni` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `laboratorio` int(11) NOT NULL,
+  `tipo_prenotazione` varchar(20) NOT NULL,
+  `prenotante` int(11) NOT NULL,
+  `tipo_test` varchar(20) NOT NULL,
+  `data` date NOT NULL,
+  `orario` datetime NOT NULL,
+  `costo` int(15) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `laboratorio` (`laboratorio`),
+  KEY `prenotante` (`prenotante`),
+  CONSTRAINT `prenotazioni_ibfk_1` FOREIGN KEY (`laboratorio`) REFERENCES `laboratori` (`id`),
+  CONSTRAINT `prenotazioni_ibfk_2` FOREIGN KEY (`prenotante`) REFERENCES `utente` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=120 DEFAULT CHARSET=utf8mb4
+
+CREATE TABLE `tampone` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `prenotazione` int(5) NOT NULL,
+  `utente` int(5) NOT NULL,
+  `laboratorio` int(11) NOT NULL,
+  `anamnesi` varchar(150) NOT NULL,
+  `medico` int(5) NOT NULL,
+  `stato` varchar(20) NOT NULL,
+  `data` date NOT NULL,
+  `orario` datetime NOT NULL,
+  `esito` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `prenotazione` (`prenotazione`),
+  KEY `utente` (`utente`),
+  KEY `laboratorio` (`laboratorio`),
+  CONSTRAINT `tampone_ibfk_1` FOREIGN KEY (`prenotazione`) REFERENCES `prenotazioni` (`id`),
+  CONSTRAINT `tampone_ibfk_2` FOREIGN KEY (`utente`) REFERENCES `utente` (`id`),
+  CONSTRAINT `tampone_ibfk_3` FOREIGN KEY (`laboratorio`) REFERENCES `laboratori` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8mb4
+

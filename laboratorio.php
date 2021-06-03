@@ -5,6 +5,7 @@
     require_once('controller/gestione_lab.php');
     require_once('view/crea-prenotazione.php');
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -82,7 +83,7 @@
 
 
             <?php 
-            
+
             //Classe CreaPrenotazione contiene metodi della vista per la creazione di una prenotazione
             $nuovaPrenotazione = new CreaPrenotazione();
 

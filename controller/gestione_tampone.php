@@ -18,11 +18,11 @@ class TamponeController {
        $aggiornaStato=new Tampone();
        $aggiornaStato->statoTampone("Anamnesi caricata", $tampone);
     }
-    // getTampone deve restituirci l'id del tampone di un determinato utente
 
+    // getTamponi deve restituirci l'id del tampone di un determinato utente
     function mostraTamponi($utente) {
         $tampone = new Tampone();
-        $tamponi = $tampone->getTampone($utente);
+        $tamponi = $tampone->getTamponi($utente);
         return $tamponi;
     }
     
@@ -36,5 +36,14 @@ class TamponeController {
             return $infoTampone;
         }
     }
-    
+    // annullaTampone chiamerà il metodo eliminaTampone per rimuovere dal db il record del tampone
+    function annullaTampone($id) {
+
+    }
+    //mostraPrenotazione restituirà tutti i tamponi contenuti in una prenotazione
+    // aggiungere seq. diagram controllo in cui la prenotazione non esiste 
+
+    function mostraPrenotazione($prenotazione) {
+        $query = "SELECT * FROM tampone t JOIN prenotazioni p ON t.prenotazione = id";
+    }
 }

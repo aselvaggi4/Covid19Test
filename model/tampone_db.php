@@ -46,7 +46,7 @@ class Tampone {
         $statement->execute();
     }
 
-    function getTampone($utente) {
+    function getTamponi($utente) {
         global $db;
         $this->utente = $utente;
         $query = "SELECT t.id, l.nome, t.stato, t.data, t.orario FROM tampone t JOIN laboratori l ON t.laboratorio = l.id WHERE utente = '$this->utente' ORDER BY data";
@@ -67,6 +67,7 @@ class Tampone {
         }
     }
 
+    //mostraTampone mostra le informazioni di uno specifico tampone
     function mostraTampone($id, $utente) {
         
         $this->id = $id;
@@ -85,6 +86,11 @@ class Tampone {
         } else {
             return false;
         }
+    }
+
+    // funzione che mostrerà tutti i tamponi all'interno di una prenotazione 
+    function trovaTamponi($prenotazione) {
+
     }
 }
 

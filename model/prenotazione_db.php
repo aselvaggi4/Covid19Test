@@ -10,7 +10,9 @@ class Prenotazione {
     private $data;
     private $tipo_test;
     public $id_inserito;
-
+    public $id;
+    
+    //Modificare il costruttore di Prenotazione
     function __construct($laboratorio, $tipo_test, $tipo_prenotazione, $utente, $data) {
 
         global $db;
@@ -32,6 +34,9 @@ class Prenotazione {
 
     }
 
+    function eliminaPrenotazione($id) {
+        $this->id = $id;
+    }
 }
 
 ?>
