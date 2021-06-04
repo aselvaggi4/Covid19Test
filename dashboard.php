@@ -30,7 +30,7 @@
 
 <body style="background: linear-gradient(#141e30, #243b55);">
 
-    <?php include ("navbar.php");
+    <?php include ("view/navbar.php");
    
    // Check delle variabili di sessione
    //var_dump($_SESSION); 

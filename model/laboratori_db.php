@@ -68,17 +68,32 @@ class Laboratorio {
         curl_close($ch);
           
         $apiResult = json_decode($json, true);
+
         print_r($apiResult);
-        $lat = $apiResult['data'][0]['latitude'];
-        $lng = $apiResult['data'][0]['longitude'];
+
+        if(isset($apiResult['data'][0]['latitude'])) {
+            
+            $lat = $apiResult['data'][0]['latitude'];
+            $lng = $apiResult['data'][0]['longitude'];
         
+            if($apiResult['data'][0]['confidence'] < 0.7) {
+                // Se non è sicuro della via inserita return false
+                return false;
+                exit();
+            } 
+        } else {
+            //Se non è stata proprio trovata la via return false
+            return false;
+            exit();
+        }
         $sql = "SELECT * FROM laboratori WHERE username = '$lab_email'";
 
         $check = $db->prepare($sql);
         $check->execute();
 
         $count = $check->rowCount(); 
-          echo "<br><br>".$count;
+        echo "<br><br>".$count;
+            
         if($count == 0) {
             
             $query = "INSERT INTO laboratori (lat, lng, telefono, regione, provincia, citta, via, iva, username, password, nome, img, costo_antigenico, costo_molecolare) VALUES ('$lat', '$lng','$telefono', '$regione','$provincia', '$citta', '$via', '$iva', '$lab_email', '$password', '$nome','$img', '$costo_antigenico', '$costo_molecolare')";
@@ -88,7 +103,7 @@ class Laboratorio {
             return true;
 
         } else {
-        return false;
+            throw new Exception("Questa email è già registrata!");
         }
     }    
     

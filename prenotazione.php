@@ -33,7 +33,7 @@ if(!isset($_SESSION['valid'])) {
 
 <body style="background: linear-gradient(#141e30, #243b55);">
 
-    <?php include ("navbar.php"); 
+    <?php include ("view/navbar.php"); 
    
     $tampone = new TamponeController();
     $infoTampone = $tampone->datiTampone($_REQUEST['pren'], $_SESSION['id']);

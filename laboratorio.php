@@ -25,7 +25,7 @@
 </head>
 
 <body style="background: linear-gradient(#141e30, #243b55);">
-    <?php include ("navbar.php"); ?>
+    <?php include ("view/navbar.php"); ?>
 
     <?php 
     
@@ -69,7 +69,7 @@
                             <form action="#" method="POST">
                                 <input type="hidden" name="prenotazione_multipla" value="ok">
                                 <button class="btn btn-primary" type="submit" style="width:100%;">AVVIA PRENOTAZIONE
-                                    MULTIPLA</button>
+                                    MULTIPLA/TERZI</button>
                             </form>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
             }
             
             if(isset($_POST['prenotazione_multipla'])) {
-                echo "<h3>Prenotazione multipla</h3>";
+                echo "<h3>Prenotazione multipla / per terzi</h3>";
 
                 $prenotazione = 'data_selezionata_multipla';
                 $nuovaPrenotazione->SelezionaData($prenotazione);

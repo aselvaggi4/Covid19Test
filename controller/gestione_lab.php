@@ -32,7 +32,9 @@ class LaboratorioController {
             } else {
                 throw new Exception("Email esistente!");
             }
-        } 
+        } else if($risultato == false) {
+            return false;
+        }
     }
 
     function ricercaLaboratori($regione, $provincia, $citta, $data) {

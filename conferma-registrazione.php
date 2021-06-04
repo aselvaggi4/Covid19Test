@@ -24,7 +24,7 @@
 
 <body style="background: linear-gradient(#141e30, #243b55);">
 
-   <?php include ("navbar.php"); ?>
+   <?php include ("view/navbar.php"); ?>
 
     <?php 
     
@@ -40,20 +40,22 @@
             if($_FILES['immagine_lab']['name']){
                 move_uploaded_file($_FILES['immagine_lab']['tmp_name'], "lab_img/".$_FILES['immagine_lab']['name']);
                 $img="lab_img/".$_FILES['immagine_lab']['name'];
+                
+            } else {
+                $img = NULL;
                 $gestioneLab = new LaboratorioController();
-                $gestioneLab->registraLaboratorio($_POST['regione'],$_POST['provincia'], $_POST['citta'],$_POST['indirizzo'],$_POST['iva'], $_POST['email'], $_POST['nome'], $_POST['password'], $img, $_POST['tel'], $_POST['costo_molecolare'], $_POST['costo_antigenico']);
-
-                $caught = false;
+                $registrazioneLab = $gestioneLab->registraLaboratorio($_POST['regione'],$_POST['provincia'], $_POST['citta'],$_POST['indirizzo'],$_POST['iva'], $_POST['email'], $_POST['nome'], $_POST['password'], $img, $_POST['tel'], $_POST['costo_molecolare'], $_POST['costo_antigenico']);
+                $caught = false; 
             }
         }
 
     } catch (Exception $e) {
-        
+
         $caught = true;
-    
+
     }
 
-    if($caught == false) {
+    if($caught == false && $registrazioneLab != false) {
     ?>
    <div class="container">
         <div class="row" style="margin: auto 8%">
@@ -65,7 +67,7 @@
    </div>
 
    <?php } 
-    else { ?>
+    else if ($caught== true) { ?>
         <div class="container">
         <div class="row" style="margin: auto 8%">
             <h2 class="centrato" style="margin:8% auto;">Email esistente, prova a registrarti con un altro indirizzo email</h2>
@@ -74,7 +76,16 @@
             </form>
         </div>
    </div>
-    <?php } 
+    <?php } else if($registrazioneLab == false) { ?>
+        <div class="container">
+        <div class="row" style="margin: auto 8%">
+            <h2 class="centrato" style="margin:8% auto;">Non è stato trovato l'indirizzo inserito, prova a scriverlo senza abbreviazioni.</h2>
+            <form action="index" class="centrato">
+            <button type="button" class="btn btn-outline-danger" onclick="history.back()">TORNA ALLA REGISTRAZIONE</button>
+            </form>
+        </div>
+   </div>
+   <?php }
    
    include ("footer-include.php");
   
