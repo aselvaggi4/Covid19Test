@@ -2,6 +2,7 @@
     require_once('model/user_db.php');
     require_once('controller/gestione_utente.php');
     require_once('controller/gestione_prenotazione.php');
+    require_once('controller/gestione_tampone.php');
     require_once('controller/gestione_lab.php');
 ?>
 

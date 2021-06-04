@@ -41,17 +41,13 @@ class MostraPrenotazione {
             
                 <input class="btn btn-primary" type="submit" name="submit" value="Carica il questionario" style="margin-top:1rem;">
             </form>';
-            }
-        } else {
-            echo '<div class="alert alert-danger d-flex align-items-center" role="alert">
+            } if($infoTampone->stato != "completato") {
+                echo '<form method="POST" action="#" style="padding-top:2rem;">
+                <input type="hidden" name="annulla_prenotazione" value="annullata">
+                <button type="submit" class="btn btn-danger" onClick="return confirm(\'Sicuro di voler eliminare la prenotazione?\')">ANNULLA PRENOTAZIONE</button>
 
-            <i class="bi bi-exclamation-triangle-fill" width="24" height="24" style="font-size: 2rem; margin-right:0.4rem;"></i>
-            <div>
-                ERRORE: Non è stato possibile trovare la prenotazione, prova a tornare indietro!
-            </div>
-        </div>
-        <button class="btn btn-danger" type="submit" name="submit"  onclick="history.back()" style="margin-top:1rem;">Torna indietro</button>
-        ';
+            </form>';
+            }
         }
     }
 }

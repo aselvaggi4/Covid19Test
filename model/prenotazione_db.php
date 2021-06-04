@@ -13,8 +13,9 @@ class Prenotazione {
     public $id;
     
     //Modificare il costruttore di Prenotazione
-    function __construct($laboratorio, $tipo_test, $tipo_prenotazione, $utente, $data) {
-
+   
+    function nuovaPrenotazione($laboratorio, $tipo_test, $tipo_prenotazione, $utente, $data){
+        
         global $db;
         
         $this->laboratorio = $laboratorio;
@@ -35,7 +36,35 @@ class Prenotazione {
     }
 
     function eliminaPrenotazione($id) {
+        global $db;
+        
         $this->id = $id;
+        
+        $query = "DELETE FROM prenotazioni WHERE id = '$id'";
+        $statement = $db->prepare($query);
+        $statement->execute();
+
+    }
+
+    function trovaPrenotazioniUtente($azienda) {
+        global $db;
+        $this->utente = $azienda;
+        $query = "SELECT * FROM prenotazioni WHERE prenotante = '$this->utente'";
+
+        $statement = $db->prepare($query);
+        $statement->execute();
+
+        $count = $statement->rowCount(); 
+
+        $prenotazioni = array();
+        if($count > 0) {
+            while($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+                $prenotazioni[] = $row;
+            }
+            return $prenotazioni;
+        } else {
+            return false;
+        }
     }
 }
 

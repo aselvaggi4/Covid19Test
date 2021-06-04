@@ -2,6 +2,8 @@
     require_once('model/user_db.php');
     require_once('controller/gestione_utente.php');
     require_once('controller/gestione_tampone.php');
+    require_once('controller/gestione_prenotazione.php');
+    require_once('view/vista-dashboard.php');
 
     if(!isset($_SESSION['valid'])) {
         header("Location: index.php");
@@ -34,41 +36,19 @@
    
    // Check delle variabili di sessione
    //var_dump($_SESSION); 
-   $tamponeController = new TamponeController();
-
-   $tamponi = $tamponeController->mostraTamponi($_SESSION['id']);
    
+
    ?>
 <div class="container"style="margin-top:1.5rem;">
     <div class="row dashboard-card">
-        
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Laboratorio</th>
-                        <th scope="col">Data</th>
-                        <th scope="col">Orario</th>
-                        <th scope="col">Stato</th>
-                    </tr>
-                </thead>
-                <tbody>
+        <h3 style="text-align:center; color:black;">Tamponi prenotati</h3>
+            <?php
+                $dashboard = new Dashboard();
+                $dashboard->mostraDashboard($_SESSION['tipo_utente']);
+            ?>
+
                 
-                <?php
-                    $contatore = 1;
-                foreach($tamponi as $tampone) {
-                    echo '<tr class="clickable-row" data-href="prenotazione?pren='.$tampone["id"].'">
-                    <th scope="row">'.$contatore.'</th>
-                    
-                    <td>'.$tampone["nome"].'</td>
-                    <td>'.$tampone["data"].'</td>
-                    <td>'.$tampone["orario"].'</td>
-                    <td>'.$tampone["stato"].'</td>
-                    </tr>';
-                    $contatore++;
-                }
                 
-                ?>
                 </tbody>
             </table>
         </div>

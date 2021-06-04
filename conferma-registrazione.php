@@ -27,15 +27,17 @@
    <?php include ("view/navbar.php"); ?>
 
     <?php 
-    
     $gestioneUtente = new UtenteController();
     
     try {
+        // Se il tipo utente è qualsiasi MA NON Laboratorio
         if($_POST['tipo_utente'] != 4) {
             $gestioneUtente->registrazioneUtente($_POST['tipo_utente'], $_POST['nome'], $_POST['cognome'], $_POST['citta'], $_POST['provincia'], 
             $_POST['cap'], $_POST['indirizzo'], $_POST['CF'], $_POST['tel'], $_POST['email'], $_POST['password']);
 
-            $caught = false;
+            $caught = false;   
+            $registrazioneLab = 5;
+            // Altrimenti registra il laboratorio
         } else if ($_POST['tipo_utente'] == 4) {
             if($_FILES['immagine_lab']['name']){
                 move_uploaded_file($_FILES['immagine_lab']['tmp_name'], "lab_img/".$_FILES['immagine_lab']['name']);
@@ -55,7 +57,7 @@
 
     }
 
-    if($caught == false && $registrazioneLab != false) {
+    if($caught == false && $registrazioneLab != false || $caught == false && $_POST['tipo_utente'] != 4) {
     ?>
    <div class="container">
         <div class="row" style="margin: auto 8%">
@@ -67,7 +69,7 @@
    </div>
 
    <?php } 
-    else if ($caught== true) { ?>
+    else if ($caught == true) { ?>
         <div class="container">
         <div class="row" style="margin: auto 8%">
             <h2 class="centrato" style="margin:8% auto;">Email esistente, prova a registrarti con un altro indirizzo email</h2>
@@ -76,7 +78,7 @@
             </form>
         </div>
    </div>
-    <?php } else if($registrazioneLab == false) { ?>
+    <?php } else if($registrazioneLab == false && $_POST['tipo_utente'] == 4) { ?>
         <div class="container">
         <div class="row" style="margin: auto 8%">
             <h2 class="centrato" style="margin:8% auto;">Non è stato trovato l'indirizzo inserito, prova a scriverlo senza abbreviazioni.</h2>

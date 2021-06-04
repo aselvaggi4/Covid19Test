@@ -45,11 +45,13 @@ class Tampone {
         $statement = $db->prepare($query);
         $statement->execute();
     }
-
+    // Funzione che mostra tutte le informazioni dei tamponi di un utente 
     function getTamponi($utente) {
         global $db;
         $this->utente = $utente;
-        $query = "SELECT t.id, l.nome, t.stato, t.data, t.orario FROM tampone t JOIN laboratori l ON t.laboratorio = l.id WHERE utente = '$this->utente' ORDER BY data";
+
+        $query = "SELECT t.id, l.nome, t.stato, t.data, t.orario, t.esito FROM tampone t JOIN laboratori l ON t.laboratorio = l.id WHERE utente = '$this->utente' ORDER BY data";
+       
 
         $statement = $db->prepare($query);
         $statement->execute();
@@ -67,14 +69,22 @@ class Tampone {
         }
     }
 
+    function eliminaTampone($id) {
+        global $db;
+        $this->id = $id;
+        $query = "DELETE FROM tampone WHERE id = '$id'";
+        $statement = $db->prepare($query);
+        $statement->execute();
+    }
     //mostraTampone mostra le informazioni di uno specifico tampone
+    //usata nella pagina Dashboard
     function mostraTampone($id, $utente) {
         
         $this->id = $id;
         $this->utente = $utente;
         global $db;
 
-        $query= "SELECT t.id, l.nome, t.stato, t.data, t.orario, t.anamnesi, l.via FROM tampone t JOIN laboratori l ON t.laboratorio = l.id WHERE utente = '$this->utente' AND t.id = '$this->id'";
+        $query= "SELECT t.id, t.prenotazione, l.nome, t.stato, t.data, t.orario, t.anamnesi, l.via FROM tampone t JOIN laboratori l ON t.laboratorio = l.id WHERE utente = '$this->utente' AND t.id = '$this->id'";
 
         $statement = $db->prepare($query);
         $statement->execute();
@@ -90,7 +100,20 @@ class Tampone {
 
     // funzione che mostrerà tutti i tamponi all'interno di una prenotazione 
     function trovaTamponi($prenotazione) {
+        global $db;
+        $query = "SELECT t.id, u.nome AS utente, u.cognome, l.nome, t.stato, t.data, t.orario, t.esito FROM tampone t JOIN laboratori l ON t.laboratorio = l.id JOIN utente u ON t.utente = u.id  WHERE prenotazione = '$prenotazione' ORDER BY data";
 
+        $statement = $db->prepare($query);
+        $statement->execute();
+        $count = $statement->rowCount(); 
+
+        $tamponi = array();
+        if($count > 0) {
+            while($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+                $tamponi[] = $row;
+            }
+            return $tamponi;
+        }
     }
 }
 

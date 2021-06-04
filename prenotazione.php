@@ -37,11 +37,15 @@ if(!isset($_SESSION['valid'])) {
    
     $tampone = new TamponeController();
     $infoTampone = $tampone->datiTampone($_REQUEST['pren'], $_SESSION['id']);
-
+    if(!is_object($infoTampone)) {
+        header('Location: dashboard.php');
+            die();
+    }
    ?>
     <div class="container" style="max-width:998px; margin-top:3rem;">
         <div class="row">
             <div class="card" style="color:black; text-align:center;">
+                <?php if(!isset($_POST['annulla_prenotazione'])) {?>
                 <div class="card-header">
                     Prenotazione presso <?php echo $infoTampone->nome; ?>
                 </div>
@@ -53,23 +57,42 @@ if(!isset($_SESSION['valid'])) {
                         <div class="col-md-6" style="margin:auto;">
                             <?php
                                 $vistaDashboard = new MostraPrenotazione($infoTampone);
+                                
+                                 if($infoTampone->stato != "completato") { ?>
+                            
+                            <?php }
+                            } else { ?>
+                            <div class="card-header">
+                                Prenotazione annullata con successo
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">La prenotazione è stata annullata!</h5>
+                                <p class="card-text">
+                                    <div class="col-md-6" style="margin:auto;">
+                                        <?php 
+                            }
                             ?>
+                                    </div>
+                                </p>
+                            </div>
                         </div>
-                    </p>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <?php 
+            <?php 
+
+$tampone = new TamponeController();
 
 if(isset($_POST['file_inserito'])) {
 
-    $tampone = new TamponeController();
 
     $tampone->aggiungiAnamnesi($_FILES['anamnesi'], $_REQUEST['pren']);
+    // $tampone->eliminaPrenotazione($_REQUEST['pren']);
 }
 
+if(isset($_POST['annulla_prenotazione'])) {
+    $tampone->annullaTampone($infoTampone->id, $infoTampone->prenotazione);
+}
 include("footer-include.php");
 ?>
 

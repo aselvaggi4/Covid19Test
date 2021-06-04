@@ -1,6 +1,7 @@
 <?php
 require_once('model/tampone_db.php');
 require_once('model/anamnesi_db.php');
+require_once('gestione_prenotazione.php');
 
 class TamponeController {
     
@@ -22,7 +23,8 @@ class TamponeController {
     // getTamponi deve restituirci l'id del tampone di un determinato utente
     function mostraTamponi($utente) {
         $tampone = new Tampone();
-        $tamponi = $tampone->getTamponi($utente);
+        $prenotazione = NULL;
+        $tamponi = $tampone->getTamponi($utente, $prenotazione);
         return $tamponi;
     }
     
@@ -37,12 +39,16 @@ class TamponeController {
         }
     }
     // annullaTampone chiamerà il metodo eliminaTampone per rimuovere dal db il record del tampone
-    function annullaTampone($id) {
+    function annullaTampone($id, $idPrenotazione) {
+        $tampone = new Tampone();
+        $tampone->eliminaTampone($id);
+
+        $prenotazione = new PrenotazioneController();
+        $prenotazione->controllaPrenotazione($idPrenotazione);
 
     }
     //mostraPrenotazione restituirà tutti i tamponi contenuti in una prenotazione
     // aggiungere seq. diagram controllo in cui la prenotazione non esiste 
-
     function mostraPrenotazione($prenotazione) {
         $query = "SELECT * FROM tampone t JOIN prenotazioni p ON t.prenotazione = id";
     }
