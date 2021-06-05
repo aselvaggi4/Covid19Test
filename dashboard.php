@@ -41,7 +41,6 @@
    ?>
 <div class="container"style="margin-top:1.5rem;">
     <div class="row dashboard-card">
-        <h3 style="text-align:center; color:black;">Tamponi prenotati</h3>
             <?php
                 $dashboard = new Dashboard();
                 $dashboard->mostraDashboard($_SESSION['tipo_utente']);

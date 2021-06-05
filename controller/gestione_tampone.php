@@ -23,8 +23,7 @@ class TamponeController {
     // getTamponi deve restituirci l'id del tampone di un determinato utente
     function mostraTamponi($utente) {
         $tampone = new Tampone();
-        $prenotazione = NULL;
-        $tamponi = $tampone->getTamponi($utente, $prenotazione);
+        $tamponi = $tampone->getTamponi($utente);
         return $tamponi;
     }
     

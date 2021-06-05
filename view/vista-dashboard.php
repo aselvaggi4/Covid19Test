@@ -11,7 +11,9 @@ class Dashboard {
             $tamponeController = new TamponeController();
 
             $tamponi = $tamponeController->mostraTamponi($_SESSION['id']);
-         
+            $controlloTamponi = $this->controllaTamponi($tamponi);
+            
+            if($controlloTamponi) {
             $tamponiPrenotati = array();
             $tamponiCompletati = array();
             foreach($tamponi as $tampone) {
@@ -22,7 +24,8 @@ class Dashboard {
                 }
             }
         
-            echo '<table class="table table-hover">
+            echo '<h3 style="text-align:center; color:black;">Tamponi prenotati</h3>
+            <table class="table table-hover">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -75,7 +78,9 @@ class Dashboard {
                 </tr>';
                 $contatore++;
             }
-        
+        } else {
+            echo '<h3 style="text-align:center; color:black;">Non sono state trovate prenotazioni</h3>';
+        }
         }  
         // Tipo utente AZIENDA
         if($_SESSION['tipo_utente'] == 2) {
@@ -83,7 +88,11 @@ class Dashboard {
             $tuttiTamponi = $prenotazione->prenotazioniUtente($_SESSION['id']);
 
             print_r($tuttiTamponi);
-
+            
+            $controlloTamponi = $this->controllaTamponi($tuttiTamponi);
+            // Controlla se gli sono stati passati tamponi
+            if($controlloTamponi) {
+                
             $tamponiPrenotati = array();
             $tamponiCompletati = array();
             foreach($tuttiTamponi as $tampone) {
@@ -93,7 +102,8 @@ class Dashboard {
                     $tamponiCompletati[] = $tampone;
                 }
             }
-            echo '<table class="table table-hover">
+            echo '<h3 style="text-align:center; color:black;">Tamponi prenotati</h3>
+            <table class="table table-hover">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -144,12 +154,21 @@ class Dashboard {
                 if($tamponeCompletato["esito"] == "Positivo"){echo 'color:red;';} else{echo 'color:#0d6efd;';}
                 echo'">'.$tamponeCompletato["esito"].'</td>
                 </tr>';
-                $contatore++;
+                $contatore++; 
+                } 
+            } else {
+                echo '<h3 style="text-align:center; color:black;">Non sono state trovate prenotazioni</h3>';
             }
         }      
 } 
     
-        
+    function controllaTamponi($tamponi) {
+        if($tamponi == false) {
+            return false;
+        } else {
+            return true;
+        }
+    }
         
                     
                 

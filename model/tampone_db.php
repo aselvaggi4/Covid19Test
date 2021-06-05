@@ -65,7 +65,7 @@ class Tampone {
             }
             return $tampone;
         } else {
-            return "Non hai tamponi prenotati!";
+            return false;
         }
     }
 
