@@ -44,6 +44,7 @@ if(!isset($_SESSION['valid'])) {
    ?>
     <div class="container" style="max-width:998px; margin-top:3rem;">
         <div class="row">
+            <?php if($_SESSION['tipo_utente'] != 4) {?>
             <div class="card" style="color:black; text-align:center;">
                 <?php if(!isset($_POST['annulla_prenotazione'])) {?>
                 <div class="card-header">
@@ -54,37 +55,60 @@ if(!isset($_SESSION['valid'])) {
                         <?php echo $infoTampone->orario. " presso " . $infoTampone->nome. " in " . $infoTampone->via; ?>
                     </h5>
                     <p class="card-text">
-                        <div class="col-md-6" style="margin:auto;">
+                    <div class="col-md-6" style="margin:auto;">
                             <?php
-                                $vistaDashboard = new MostraPrenotazione($infoTampone);
+                                $vistaDashboard = new MostraPrenotazione($infoTampone, $_SESSION['tipo_utente']);
                                 
                                  if($infoTampone->stato != "completato") { ?>
-                            
+
                             <?php }
                             } else { ?>
-                            <div class="card-header">
+                        <div class="card-header">
                                 Prenotazione annullata con successo
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">La prenotazione è stata annullata!</h5>
-                                <p class="card-text">
-                                    <div class="col-md-6" style="margin:auto;">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">La prenotazione è stata annullata!</h5>
+                            <p class="card-text">
+                            <div class="col-md-6" style="margin:auto;">
                                         <?php 
                             }
                             ?>
-                                    </div>
-                                </p>
                             </div>
+                            </p>
                         </div>
+                    </div>
+                    <?php }  else if($_SESSION['tipo_utente'] == 4){ ?>
+                        <div class="card" style="color:black; text-align:center;">
+               
+                <div class="card-header">
+                    Prenotazione di <?php echo $infoTampone->utente . ' ' . $infoTampone->cognome; ?>
                 </div>
-            </div>
+                <div class="card-body">
+                    <h5 class="card-title">La prenotazione del
+                        <?php echo $infoTampone->orario; ?>
+                    </h5>
+                    <p class="card-text">
+                    <div class="col-md-6" style="margin:auto;">
+                            <?php
+                                $vistaDashboard = new MostraPrenotazione($infoTampone, $_SESSION['tipo_utente']);
+                                
+                                if($infoTampone->stato != "completato") { ?>
 
-            <?php 
+                            <?php }
+                             ?>
+                 
+                            </div>
+                            </p>
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+<?php }
 
 $tampone = new TamponeController();
 
 if(isset($_POST['file_inserito'])) {
-
 
     $tampone->aggiungiAnamnesi($_FILES['anamnesi'], $_REQUEST['pren']);
     // $tampone->eliminaPrenotazione($_REQUEST['pren']);
