@@ -26,7 +26,8 @@ class LaboratorioController {
 
             if ($controllo !== 0) {
                 $res = $lab->getUtente($lab_email, $lab_psw);
-                $lab->validaSessione($tipo_utente, $res->id, $lab_email, $nome);
+                $cognome = "NULL";
+                $lab->validaSessione($tipo_utente, $res->id, $lab_email, $nome, $cognome);
                 return true;
     
             } else {
@@ -93,10 +94,8 @@ class LaboratorioController {
                 $orario = substr($date['orario'], -8, 5);
                 $orariOccupati[] = $orario;
             }
-           // print_r($orariOccupati);
-            $orariDisponibili = array_diff($orariLavorativi, $orariOccupati);
 
-            //print_r($orariDisponibili);
+            $orariDisponibili = array_diff($orariLavorativi, $orariOccupati);
             
             return $orariDisponibili;
         }

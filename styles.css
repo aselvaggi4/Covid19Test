@@ -357,6 +357,8 @@ tr {
     background-color: #fff;
     border-radius: 15px;
     padding: 0.5rem;
+    color:#000;
+    text-align:center;
 }
 
 /*-------------- MEDIA QUERIES ----------------*/

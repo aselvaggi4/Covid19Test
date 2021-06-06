@@ -63,19 +63,37 @@ class PrenotazioneController {
         } else {
             $tamponiDipendenti = array();
             $tampone = new Tampone();
+            //print_r($prenotazioniAzienda);
             foreach($prenotazioniAzienda as $prenotazioneAzienda) {
-                $tamponiDipendenti = $tampone->trovaTamponi($prenotazioneAzienda["id"]);
+                //echo $prenotazioneAzienda['id'];
+                $tamponiDipendenti[] = $tampone->trovaTamponi($prenotazioneAzienda["id"]);
             }
             return $tamponiDipendenti;
         }
     }
-}
 
-// Tutte le prenotazioni effettuate da un utente di tipo 2
-    // Trovare id dell'utente
-    // Trovare prenotazione da quell'id
-// Tutte quelle prenotazioni --> Tamponi di ogni prenotazione 
-    // Trovare id dell'utente di un dato tampone
-    // Mostrare i dati
-// Ordine cronologico
-// Divisi in "in corso" e "completati";
+    function prenotazioniLaboratorio() {
+        global $db;
+        // Cerca l'id del laboratorio dall'email;
+        $utente = $_SESSION['email'];
+        $query = "SELECT id FROM laboratori WHERE username = '$utente'";
+
+        $statement = $db->prepare($query);
+        $statement->execute();
+
+        $laboratorio = $statement->fetch();
+        $prenotazione = new Prenotazione();
+        $prenotazioni = $prenotazione->trovaPrenotazioniLaboratorio($laboratorio['id']);
+        
+        if($prenotazioni == false) {
+            echo "nessuna prenotazione trovata";
+        } else {
+            $tamponiLaboratorio = array();
+            $tampone = new Tampone();
+            foreach($prenotazioni as $prenotazione) {
+                $tamponiLaboratorio[] = $tampone->trovaTamponi($prenotazione['id']);
+            }
+            return $tamponiLaboratorio;   
+        }
+    }
+}

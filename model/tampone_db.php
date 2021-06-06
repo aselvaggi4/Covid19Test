@@ -83,8 +83,11 @@ class Tampone {
         $this->id = $id;
         $this->utente = $utente;
         global $db;
-
-        $query= "SELECT t.id, t.prenotazione, l.nome, t.stato, t.data, t.orario, t.anamnesi, l.via FROM tampone t JOIN laboratori l ON t.laboratorio = l.id WHERE utente = '$this->utente' AND t.id = '$this->id'";
+        if($_SESSION['tipo_utente'] == 4) {
+            $query= "SELECT t.id, t.prenotazione, u.nome AS utente, u.cognome, u.CF, u.tel, u.email, l.nome, t.stato, t.data, t.orario, t.anamnesi, l.via FROM tampone t JOIN laboratori l ON t.laboratorio = l.id JOIN utente u ON t.utente = u.id WHERE t.id = '$this->id'";
+        } else {
+            $query= "SELECT t.id, t.prenotazione, l.nome, t.stato, t.data, t.orario, t.anamnesi, l.via FROM tampone t JOIN laboratori l ON t.laboratorio = l.id WHERE utente = '$this->utente' AND t.id = '$this->id'";
+        }
 
         $statement = $db->prepare($query);
         $statement->execute();
@@ -97,7 +100,6 @@ class Tampone {
             return false;
         }
     }
-
     // funzione che mostrerà tutti i tamponi all'interno di una prenotazione 
     function trovaTamponi($prenotazione) {
         global $db;
@@ -105,7 +107,7 @@ class Tampone {
 
         $statement = $db->prepare($query);
         $statement->execute();
-        $count = $statement->rowCount(); 
+        $count = $statement->rowCount();
 
         $tamponi = array();
         if($count > 0) {

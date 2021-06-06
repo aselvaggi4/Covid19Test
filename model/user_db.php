@@ -25,7 +25,7 @@ class Utente {
         $this->email = $user_email;
         $this->password = $user_psw;
 
-        $query = "SELECT id, tipo_utente, nome, email, password 
+        $query = "SELECT id, tipo_utente, nome, email, cognome, password 
         FROM utente WHERE email = '$this->email' AND password = '$this->password'";
 
         $statement = $db->prepare($query);
@@ -45,13 +45,14 @@ class Utente {
         
     }
     // Inizializza le variabili di sessione
-    function validaSessione($tipo_utente, $id, $email, $nome) {
+    function validaSessione($tipo_utente, $id, $email, $nome, $cognome) {
 
         $_SESSION['valid'] = true;
         $_SESSION["tipo_utente"] = $tipo_utente;
         $_SESSION["id"] = $id;
         $_SESSION["email"] = $email;
         $_SESSION["nome"] = $nome;
+        $_SESSION["cognome"] = $cognome;
 
     }
     // Crea un utente
@@ -135,7 +136,7 @@ class Utente {
         $utenteInserito = $db->lastInsertId();
         return $utenteInserito;
     }
-
+    // Genera password per un utente da registrare
     function generaPassword(){
         $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
         $pass = array(); //remember to declare $pass as an array
@@ -146,7 +147,7 @@ class Utente {
         }
         return implode($pass);
     }
-    
+    // Invia una email all'utente dopo averlo registrato
     function emailRegistrazione($user_email, $user_psw, $nome, $cognome) {
         $this->nome = $nome;
         $this->cognome = $cognome;
@@ -164,6 +165,17 @@ class Utente {
                 echo "Email sending failed...";
             }
 
+    }
+
+    function informazioniUtente($id) {
+        global $db;
+        $this->id = $id;
+        $query = "SELECT * FROM utente WHERE id='$this->id'";
+
+        $statement = $db->prepare($query);
+        $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_LAZY);
+        return $result;
     }
 }
 

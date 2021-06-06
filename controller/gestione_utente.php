@@ -15,7 +15,8 @@ class UtenteController {
                 $risultato->tipo_utente, 
                 $risultato->id, 
                 $risultato->email, 
-                $risultato->nome
+                $risultato->nome,
+                $risultato->cognome
             );
         } else {
             throw new Exception("Dati errati!");
@@ -30,7 +31,7 @@ class UtenteController {
 
         if ($check == true) {
             $result = $utente->getUtente($user_email, $user_psw);
-            $utente->validaSessione($tipo_utente, $result->id, $user_email, $nome);
+            $utente->validaSessione($tipo_utente, $result->id, $user_email, $nome, $cognome);
             return true;
 
         } else {

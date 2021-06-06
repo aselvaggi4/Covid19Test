@@ -61,6 +61,27 @@ class Prenotazione {
             while($row = $statement->fetch(PDO::FETCH_ASSOC)) {
                 $prenotazioni[] = $row;
             }
+            //print_r($prenotazioni);
+            return $prenotazioni;
+        } else {
+            return false;
+        }
+    }
+    function trovaPrenotazioniLaboratorio($laboratorio) {
+        global $db;
+        $this->laboratorio = $laboratorio;
+        $query = "SELECT * FROM prenotazioni WHERE laboratorio = '$this->laboratorio'";
+
+        $statement = $db->prepare($query);
+        $statement->execute();
+
+        $count = $statement->rowCount(); 
+
+        $prenotazioni = array();
+        if($count > 0) {
+            while($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+                $prenotazioni[] = $row;
+            }
             return $prenotazioni;
         } else {
             return false;

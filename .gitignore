@@ -2,3 +2,5 @@ ignorefolder/
 config.js
 lab_img/*
 !lab_img/.gitkeep
+uploads/*
+!uploads/.gitkeep
