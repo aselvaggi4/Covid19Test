@@ -103,8 +103,11 @@ if(isset($_POST['accesso'])) {
   } catch (Exception $e) {
     echo "<script>alert('I dati inseriti sono errati!')</script>";
   }
-
-  echo "<meta http-equiv='refresh' content='0'>";
+  if($_SESSION['tipo_utente'] == 4) {
+    header("Location: dashboard.php");
+  } else {
+    echo "<meta http-equiv='refresh' content='0'>";
+  }
 
 } 
     // Display the Form and the Submit Button
