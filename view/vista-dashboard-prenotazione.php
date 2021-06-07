@@ -68,6 +68,23 @@ class MostraPrenotazione {
                     </div>
                   </div>
                   <p> <a href=".\\'.$infoTampone->anamnesi.'">Guarda l\'anamnesi del paziente.</a></p>';
+                
+                }
+                
+                if(isset($_REQUEST['esito'])||isset($_GET['esito'])) {
+                    echo '<h3>Inserisci esito tampone</h3>
+                    <form method="POST" action="#">
+                    <select class="form-control" name="esito_inserito" required>
+                    <option value="Positivo">Positivo</option>
+                    <option value="Negativo">Negativo</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary" style="margin-top:2rem;">INSERISCI</button>
+                    </form>';
+                } else {
+                    echo '<form action="#" method="GET"><input type="hidden" name="esito">
+                    <input type="hidden" name="pren" value="'.$_REQUEST['pren'].'">
+                    <button type="submit" class="btn btn-primary" style="margin-top:2rem;">INSERISCI ESITO</button>
+                    </form>';
                 }
             }
         }

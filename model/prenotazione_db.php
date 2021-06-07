@@ -46,9 +46,9 @@ class Prenotazione {
 
     }
 
-    function trovaPrenotazioniUtente($azienda) {
+    function trovaPrenotazioniUtente($prenotante) {
         global $db;
-        $this->utente = $azienda;
+        $this->utente = $prenotante;
         $query = "SELECT * FROM prenotazioni WHERE prenotante = '$this->utente'";
 
         $statement = $db->prepare($query);

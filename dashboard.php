@@ -32,29 +32,23 @@
 
 <body style="background: linear-gradient(#141e30, #243b55);">
 
-    <?php include ("view/navbar.php");
-   
-   // Check delle variabili di sessione
-   //var_dump($_SESSION); 
-   
+    <?php include ("view/navbar.php"); ?>
 
-   ?>
     <div class="container" style="margin-top:1.5rem;">
         <div class="row">
             <div class="col-md-8 dashboard-card">
                 <?php
                 $dashboard = new Dashboard();
                 $dashboard->mostraDashboard($_SESSION['tipo_utente']);
-            ?>
-
-
-
+                ?>
                 </tbody>
                 </table>
             </div>
-            
+
         </div>
     </div>
+
+
 
     <?php include ("footer-include.php"); ?>
     <script>
@@ -64,6 +58,7 @@
                 window.location = $(this).data("href");
             });
         });
+
     </script>
 
 </body>

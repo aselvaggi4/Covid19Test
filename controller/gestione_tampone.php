@@ -51,4 +51,10 @@ class TamponeController {
     function mostraPrenotazione($prenotazione) {
         $query = "SELECT * FROM tampone t JOIN prenotazioni p ON t.prenotazione = id";
     }
+
+    function inserisciEsito($tampone, $esito) {
+        $nuovoTampone = new Tampone();
+        $nuovoTampone->esitoTampone($tampone, $esito);
+
+    }
 }

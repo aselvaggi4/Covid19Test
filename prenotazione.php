@@ -37,14 +37,15 @@ if(!isset($_SESSION['valid'])) {
    
     $tampone = new TamponeController();
     $infoTampone = $tampone->datiTampone($_REQUEST['pren'], $_SESSION['id']);
-    if(!is_object($infoTampone)) {
+    
+    if((!is_object($infoTampone)) || $infoTampone->stato == "completato") {
         header('Location: dashboard.php');
             die();
     }
    ?>
     <div class="container" style="max-width:998px; margin-top:3rem;">
         <div class="row">
-            <?php if($_SESSION['tipo_utente'] != 4) {?>
+            <?php if($_SESSION['tipo_utente'] != 4) { ?>
             <div class="card" style="color:black; text-align:center;">
                 <?php if(!isset($_POST['annulla_prenotazione'])) {?>
                 <div class="card-header">
@@ -117,6 +118,14 @@ if(isset($_POST['file_inserito'])) {
 if(isset($_POST['annulla_prenotazione'])) {
     $tampone->annullaTampone($infoTampone->id, $infoTampone->prenotazione);
 }
+
+if(isset($_POST['esito_inserito'])) {
+    $tampone->inserisciEsito($infoTampone, $_POST['esito_inserito']);
+    echo '<script>alert("Esito inserito!");
+    window.location.replace("dashboard.php");
+    </script>';
+}
+
 include("footer-include.php");
 ?>
 

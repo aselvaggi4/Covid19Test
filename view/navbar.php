@@ -28,7 +28,7 @@
           } else if($_SESSION['tipo_utente'] == 3) {
             echo 'href="dashboard">ESITI PAZIENTI</a>';
           } else if($_SESSION['tipo_utente'] == 4) {
-            echo 'href="dashboard">PRENOTAZIONI</a>';
+            echo 'href="dashboard">VISUALIZZA PRENOTAZIONI</a>';
           }
         } else {
           echo 'href=".\convenziona-laboratorio">CONVENZIONA IL TUO LABORATORIO</a>';

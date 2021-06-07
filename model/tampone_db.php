@@ -14,7 +14,7 @@ class Tampone {
     private $data;
     private $id;
 
-
+    
     function setTampone($prenotazione, $utente, $laboratorio, $data, $orario) {
         $this->laboratorio = $laboratorio;
         $this->utente = $utente;
@@ -86,7 +86,7 @@ class Tampone {
         if($_SESSION['tipo_utente'] == 4) {
             $query= "SELECT t.id, t.prenotazione, u.nome AS utente, u.cognome, u.CF, u.tel, u.email, l.nome, t.stato, t.data, t.orario, t.anamnesi, l.via FROM tampone t JOIN laboratori l ON t.laboratorio = l.id JOIN utente u ON t.utente = u.id WHERE t.id = '$this->id'";
         } else {
-            $query= "SELECT t.id, t.prenotazione, l.nome, t.stato, t.data, t.orario, t.anamnesi, l.via FROM tampone t JOIN laboratori l ON t.laboratorio = l.id WHERE utente = '$this->utente' AND t.id = '$this->id'";
+            $query= "SELECT t.id, t.prenotazione, u.nome AS utente, u.cognome, u.email, l.nome, t.stato, t.data, t.orario, t.anamnesi, l.via FROM tampone t JOIN laboratori l ON t.laboratorio = l.id JOIN utente u ON t.utente = u.id WHERE utente = '$this->utente' AND t.id = '$this->id'";
         }
 
         $statement = $db->prepare($query);
@@ -116,6 +116,33 @@ class Tampone {
             }
             return $tamponi;
         }
+    }
+    // Inserisce esito tampone
+    function esitoTampone($datiTampone, $esito) {
+        global $db;
+        $this->id = $datiTampone->id;
+        $this->esito = $esito;
+
+        $query = "UPDATE tampone SET esito = '$this->esito' WHERE id = '$datiTampone->id'";
+        $statement = $db->prepare($query);
+        $statement->execute();
+        // Aggiorna lo stato a completato
+        $this->statoTampone("completato", $this->id);
+        $this->emailEsito($datiTampone, $this->esito);
+    }
+
+    function emailEsito($tampone, $esito) {
+        $to_email = $tampone->email;
+            $subject = "Esito tampone";
+            $body = "Ciao " .$tampone->utente." " . $tampone->cognome. " . Ti scriviamo per comunicarti che è stato inserito l'esito del tuo tampone del: ". $tampone->data. ". L'esito è: " .$esito ;
+            $headers = "From: Covid19Test piattaforma";
+
+            if (mail($to_email, $subject, $body, $headers)) {
+                return true;
+            } else {
+                echo "Email sending failed...";
+            }
+
     }
 }
 

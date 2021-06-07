@@ -54,19 +54,18 @@ class PrenotazioneController {
         }
     }
     //Funzione che restituisce la prenotazione di un azienda
-    function prenotazioniUtente($azienda) {
+    function prenotazioniUtente($prenotante) {
         $prenotazione = new Prenotazione();
-        $prenotazioniAzienda = $prenotazione->trovaPrenotazioniUtente($azienda);
+        $prenotazioniUtente = $prenotazione->trovaPrenotazioniUtente($prenotante);
 
-        if($prenotazioniAzienda == false) {
+        if($prenotazioniUtente == false) {
             return false;
         } else {
             $tamponiDipendenti = array();
             $tampone = new Tampone();
-            //print_r($prenotazioniAzienda);
-            foreach($prenotazioniAzienda as $prenotazioneAzienda) {
-                //echo $prenotazioneAzienda['id'];
-                $tamponiDipendenti[] = $tampone->trovaTamponi($prenotazioneAzienda["id"]);
+            
+            foreach($prenotazioniUtente as $prenotazioneUtente) {
+                $tamponiDipendenti[] = $tampone->trovaTamponi($prenotazioneUtente["id"]);
             }
             return $tamponiDipendenti;
         }
@@ -86,14 +85,14 @@ class PrenotazioneController {
         $prenotazioni = $prenotazione->trovaPrenotazioniLaboratorio($laboratorio['id']);
         
         if($prenotazioni == false) {
-            echo "nessuna prenotazione trovata";
+            return false;
         } else {
             $tamponiLaboratorio = array();
             $tampone = new Tampone();
             foreach($prenotazioni as $prenotazione) {
                 $tamponiLaboratorio[] = $tampone->trovaTamponi($prenotazione['id']);
             }
-            return $tamponiLaboratorio;   
+            return $tamponiLaboratorio; 
         }
     }
 }
