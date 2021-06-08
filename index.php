@@ -34,7 +34,7 @@
       <div class="container-fluid ">
 
          <div class="col barra-ricerca">
-            <?php  include("cerca-laboratorio.php"); ?>
+            <?php  include("view/cerca-laboratorio.php"); ?>
          </div>
 
       </div>

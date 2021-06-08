@@ -58,7 +58,7 @@ window.onload = loadScript;
                     
                     $lab = new LaboratorioController();
 
-                    $laboratori = $lab->ricercaLaboratori($_GET["regione"], $_GET["provincia"], $_GET["citta"], $_GET["data"]);
+                    $laboratori = $lab->ricercaLaboratori($_GET["regione"], $_GET["provincia"], $_GET["citta"]);
                     foreach($laboratori as $laboratorio) {
                         echo "<a href='laboratorio?id=".$laboratorio['id']."'>"; 
                 ?>
