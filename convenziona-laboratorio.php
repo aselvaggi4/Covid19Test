@@ -60,7 +60,7 @@
                     </div>
                     <div class="col-12 input-form">
                         <input type="tel" id="tel" name="tel" class="form-control" pattern="\d*"
-                            oninvalid="setCustomValidity('Inserisci un numero di telefono')" aria-label="Telefono"
+                            oninvalid="this.setCustomValidity(this.willValidate?'':'Inserisci un numero di telefono')" aria-label="Telefono"
                             required>
                         <label>Telefono *</label>
                     </div>

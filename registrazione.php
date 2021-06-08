@@ -65,7 +65,7 @@
                     </div>
                     <div class="col-6 input-form">
                         <input type="tel" id="cap" name="cap" class="form-control" pattern="\d*"
-                            oninvalid="setCustomValidity('Inserisci un CAP valido')" aria-label="Cap"
+                            oninvalid="this.setCustomValidity(this.willValidate?'':'Inserisci un CAP valido')" aria-label="Cap"
                             required>
                             <label>CAP</label>
                     </div>
@@ -76,7 +76,7 @@
                     </div>
                     <div class="col-12 input-form">
                         <input type="tel" id="tel" name="tel" class="form-control" pattern="\d*"
-                            oninvalid="setCustomValidity('Inserisci un numero di telefono')" aria-label="Telefono" required>
+                            oninvalid="this.setCustomValidity(this.willValidate?'':'Inserisci un numero di telefono!')" aria-label="Telefono" required>
                             <label>Telefono</label>
                     </div>
                     <div class="col-12 input-form">
@@ -108,14 +108,6 @@
         </form>
     </div>
 
-    <?php // if(isset($_POST['submit'])) {
-
-       
-
-       // echo "<script>alert('Registrazione effettuata!')</script>";
-   // }
-
-    ?>
     <?php include ("footer-include.php"); ?>
 
 </body>
