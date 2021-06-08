@@ -70,7 +70,7 @@ class Prenotazione {
     function trovaPrenotazioniLaboratorio($laboratorio) {
         global $db;
         $this->laboratorio = $laboratorio;
-        $query = "SELECT * FROM prenotazioni WHERE laboratorio = '$this->laboratorio'";
+        $query = "SELECT * FROM prenotazioni WHERE laboratorio = '$this->laboratorio' AND tipo_test <> 'NULL'";
 
         $statement = $db->prepare($query);
         $statement->execute();

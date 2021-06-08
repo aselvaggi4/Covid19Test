@@ -141,7 +141,7 @@ class Dashboard {
                 $contatore++;
             }
         echo'</tbody></table>        
-        </div>
+        
         </div>
         <div class="col-md-3 dashboard-card" style="margin-left:auto; padding:1rem;">
         <h3>Dashboard Azienda</h3><hr>
@@ -185,7 +185,99 @@ class Dashboard {
                 <p>Questa è la tua dashboard: da qui puoi visualizzare le prenotazioni aziendali e visualizzare i gli esiti dei tuoi dipendenti.</p>
                 </div>';
             }
-        } 
+        }
+        // Tipo utente MEDICO
+        if($_SESSION['tipo_utente'] == 3) {
+            $prenotazione = new PrenotazioneController();
+            $tuttiTamponi = $prenotazione->prenotazioniUtente($_SESSION['id']);
+            $controlloTamponi = $this->controllaTamponi($tuttiTamponi);
+            // Controlla se gli sono stati passati tamponi
+            if($controlloTamponi) {
+                
+            $tamponiPrenotati = array();
+            $tamponiCompletati = array();
+            foreach($tuttiTamponi as $tamponi=>$val) {
+                if(is_array($val)) {
+                foreach($val as $tampone) {
+                    if($tampone["stato"] != "completato") {
+                        $tamponiPrenotati[] = $tampone;
+                    } 
+                    else {
+                        $tamponiCompletati[] = $tampone;
+                    }
+                } 
+            }
+        }
+            echo '<h3 style="text-align:center; color:black;">Tamponi prenotati</h3>
+            <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Laboratorio</th>
+                    <th scope="col">Paziente</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Stato</th>
+                </tr>
+            </thead>
+            <tbody>';
+            $contatore = 1;
+            foreach($tamponiPrenotati as $tamponePrenotato) {
+                echo '<tr class="clickable-row" data-href="prenotazione?pren='.$tamponePrenotato["id"].'">
+                <th scope="row">'.$contatore.'</th>
+
+                <td>'.$tamponePrenotato["nome"].'</td>
+                <td>'.$tamponePrenotato["utente"]. " ". $tamponePrenotato["cognome"].'</td>
+                <td>'.$tamponePrenotato["data"].'</td>
+                <td>'.$tamponePrenotato["stato"].'</td>
+                </tr>';
+                $contatore++;
+            }
+        echo'</tbody></table>        
+        </div>
+        
+        <div class="col-md-3 dashboard-card" style="margin-left:auto; padding:1rem;">
+        <h3>Dashboard Medico</h3><hr>
+        <p>Benvenuto <strong>'.$_SESSION['nome'].' '.$_SESSION['cognome']. '</strong></p>
+        <p>Questa è la tua dashboard: da qui puoi visualizzare le prenotazioni che hai effettuato per i tuoi pazienti e visualizzarne gli esiti.</p>
+        </div> 
+        <!-- Tamponi completati -->
+            <div class="row dashboard-card" style="margin-top:3rem;">
+                <h3 style="text-align:center; color:black;">Tamponi completati</h3>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Paziente</th>
+                                <th scope="col">Data</th>
+                                <th scope="col">Orario</th>
+                                <th scope="col">Esito</th>
+                            </tr>
+                        </thead>
+                        <tbody>';
+            $contatore = 1;
+            foreach($tamponiCompletati as $tamponeCompletato) {
+                echo '<tr>
+                <th scope="row">'.$contatore.'</th>
+
+                <td>'.$tamponeCompletato["utente"]." ".$tamponeCompletato["cognome"].'</td>
+                <td>'.$tamponeCompletato["data"].'</td>
+                <td>'.$tamponeCompletato["orario"].'</td>
+                <td style="font-weight:600;';
+                if($tamponeCompletato["esito"] == "Positivo"){echo 'color:red;';} else{echo 'color:#0d6efd;';}
+                echo'">'.$tamponeCompletato["esito"].'</td>
+                </tr>';
+                $contatore++; 
+                } 
+            } else {
+                echo '<h3 style="text-align:center; color:black;">Non sono state trovate prenotazioni</h3>
+                </div>
+                <div class="col-md-3 dashboard-card" style="margin-left:auto; padding:1rem;">
+                <h3>Dashboard Medico</h3><hr>
+                <p>Benvenuto <strong>'.$_SESSION['nome'].' '.$_SESSION['cognome']. '</strong></p>
+                <p>Questa è la tua dashboard: da qui puoi visualizzare le prenotazioni che hai effettuato per i tuoi pazienti e visualizzarne gli esiti.</p>
+                </div>';
+            }
+        }  
         if($_SESSION['tipo_utente'] == 4) {
 
             $cercaPrenotazioni = new PrenotazioneController();
@@ -239,6 +331,8 @@ class Dashboard {
         <h3>Dashboard Laboratorio</h3><hr>
         <p>Benvenuto <strong>'.$_SESSION['nome'].' '.$_SESSION['cognome']. '</strong></p>
         <p>Questa è la tua dashboard: da qui puoi visualizzare le prenotazioni, visualizzare i questionari anamnestici ed inserire l\'esito.</p>
+        <a href="modifica-disponibilita" class="btn btn-primary">MODIFICA DISPONIBILITÀ</a>
+
         </div>        
         </div>
         <!-- Tamponi completati -->
@@ -275,6 +369,7 @@ class Dashboard {
                 <h3>Dashboard Laboratorio</h3><hr>
                 <p>Benvenuto <strong>'.$_SESSION['nome'].' '.$_SESSION['cognome']. '</strong></p>
                 <p>Questa è la tua dashboard: da qui puoi visualizzare le prenotazioni, visualizzare i questionari anamnestici ed inserire l\'esito.</p>
+                <a href="modifica-disponibilita" class="btn btn-primary">MODIFICA DISPONIBILITÀ</a>
                 </div>';
         }
    }

@@ -6,6 +6,9 @@
     width: 100%;
     /* The width is the width of the web page */
   }
+.margin-auto {
+    margin:auto;
+}
 
 .centrato {
     text-align: center;

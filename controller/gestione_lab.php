@@ -38,10 +38,10 @@ class LaboratorioController {
         }
     }
 
-    function ricercaLaboratori($regione, $provincia, $citta, $data) {
+    function ricercaLaboratori($regione, $provincia, $citta) {
         $ricercaLab = new Laboratorio();
 
-        $laboratori = $ricercaLab->getLaboratori($regione, $provincia, $citta, $data);
+        $laboratori = $ricercaLab->getLaboratori($regione, $provincia, $citta);
         
         if($laboratori) {
             return $laboratori;
@@ -100,6 +100,19 @@ class LaboratorioController {
             return $orariDisponibili;
         }
 
+    }
+
+    function idLaboratorio() {
+        global $db;
+        // Cerca l'id del laboratorio dall'email;
+        $utente = $_SESSION['email'];
+        $query = "SELECT id FROM laboratori WHERE username = '$utente'";
+
+        $statement = $db->prepare($query);
+        $statement->execute();
+
+        $laboratorio = $statement->fetch();
+        return $laboratorio;
     }
 }
 

@@ -4,7 +4,7 @@
 class Laboratorio {
 
     //Ricerca laboratori
-    function getLaboratori($regione, $provincia, $citta, $data) {
+    function getLaboratori($regione, $provincia, $citta) {
 
         global $db;
 

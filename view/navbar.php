@@ -26,7 +26,7 @@
           } else if ($_SESSION['tipo_utente'] == 2) {
             echo 'href="dashboard">STORICO AZIENDALE</a>';
           } else if($_SESSION['tipo_utente'] == 3) {
-            echo 'href="dashboard">ESITI PAZIENTI</a>';
+            echo 'href="dashboard">PRENOTAZIONI PAZIENTI</a>';
           } else if($_SESSION['tipo_utente'] == 4) {
             echo 'href="dashboard">VISUALIZZA PRENOTAZIONI</a>';
           }

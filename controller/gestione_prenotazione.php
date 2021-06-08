@@ -3,6 +3,7 @@ require_once('model/db.php');
 require_once('model/prenotazione_db.php');
 require_once('gestione_tampone.php');
 require_once('gestione_utente.php');
+require_once('gestione_lab.php');
 
 class PrenotazioneController {
     
@@ -12,9 +13,10 @@ class PrenotazioneController {
         //prenotazione riceverà l'id appena inserito
         $prenotazione = new Prenotazione();
         $prenotazione->nuovaPrenotazione($laboratorio, $tipo_test, $tipo_prenotazione, $utente, $data);
+        
         $tampone = new TamponeController();
-
         $tampone->creaTampone($prenotazione->id_inserito, $utente, $laboratorio, $data, $orario);
+
     }
 
     function creaPrenotazioneMultipla($prenotante, $tipo_test, $data, $laboratorio, $prenotanti) {
@@ -72,15 +74,10 @@ class PrenotazioneController {
     }
 
     function prenotazioniLaboratorio() {
-        global $db;
-        // Cerca l'id del laboratorio dall'email;
-        $utente = $_SESSION['email'];
-        $query = "SELECT id FROM laboratori WHERE username = '$utente'";
+        // Trova l'id del laboratorio;
+        $lab = new LaboratorioController();
+        $laboratorio = $lab->idLaboratorio();
 
-        $statement = $db->prepare($query);
-        $statement->execute();
-
-        $laboratorio = $statement->fetch();
         $prenotazione = new Prenotazione();
         $prenotazioni = $prenotazione->trovaPrenotazioniLaboratorio($laboratorio['id']);
         
