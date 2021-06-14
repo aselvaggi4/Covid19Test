@@ -22,3 +22,5 @@ nello sprint 4 sono state aggiunte le funzionalità dell'azienda sanitaria :
 l'azienda sanitaria è registrata come account di tipo 0, verrà inserito nel dataset da importare
 
 nel mentre se si vogliono testare le funzionalità, inserire nella tabella utente un account di tipo 0 con i dati desiderati.
+
+NB: Non funzionerà il sistema di invio di email in quanto serve modificare dei file di configurazione di XAMPP aggiungendo email e password da cui inviare le email, verranno eventualmente inseriti
