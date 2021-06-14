@@ -1,3 +1,6 @@
+<?php require_once('./controller/gestione_utente.php');
+//var_dump($_SESSION);
+?>
 <nav class="navbar navbar-expand-lg navbar-light">
 
   <div class="container-fluid">
@@ -13,36 +16,31 @@
 
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav centra-navbar">
-        <li class="nav-item">
-          <a class="nav-link <?php if ($page_id == 1) {
-                                echo "active";
-                              } ?>" aria-current="page" href="chi-siamo">CHI SIAMO</a>
+      <li class="nav-item">
+          <a class="nav-link" href="index#faq">FAQ</a>
         </li>
         <li class="nav-item">
         <a class="nav-link"
         <?php if(isset($_SESSION['valid'])) {
           if($_SESSION['tipo_utente'] == 1) {
-            echo 'href="dashboard">AGENDA PRENOTAZIONI</a>';
+            echo 'href="dashboard">AGENDA PRENOTAZIONI';
           } else if ($_SESSION['tipo_utente'] == 2) {
-            echo 'href="dashboard">STORICO AZIENDALE</a>';
+            echo 'href="dashboard">STORICO AZIENDALE';
           } else if($_SESSION['tipo_utente'] == 3) {
-            echo 'href="dashboard">PRENOTAZIONI PAZIENTI</a>';
+            echo 'href="dashboard">PRENOTAZIONI PAZIENTI';
           } else if($_SESSION['tipo_utente'] == 4) {
-            echo 'href="dashboard">VISUALIZZA PRENOTAZIONI</a>';
+            echo 'href="dashboard">VISUALIZZA PRENOTAZIONI';
           }
         } else {
-          echo 'href=".\convenziona-laboratorio">CONVENZIONA IL TUO LABORATORIO</a>';
+          echo 'href=".\convenziona-laboratorio">CONVENZIONA IL TUO LABORATORIO';
           } ?>
+        </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link <?php if ($page_id == 3) {
-                                echo "active";
-                              } ?>" href="#">FAQ</a>
-        </li>
+        <?php if(!isset($_SESSION['valid'])) {?>
         <li class="nav-item">
           <a class="nav-link" id="login" data-toggle="modal" data-target="#exampleModal" href="#">LOGIN</a>
         </li>
-
+      <?php } ?>
 
       </ul>
       <?php 
@@ -63,7 +61,7 @@
         </div>
       </form>
        '; } else echo 
-       '<form method="POST" action="index" class="logout"><button type="submit" name="logout" class="btn btn-danger">Logout</button></form>'; 
+       '<form method="POST" action="index" class="logout" style="margin-right: 3rem;"><button type="submit" name="logout" class="btn btn-danger">Logout</button></form>'; 
        
        if(isset($_POST['logout'])) {
 
@@ -72,8 +70,9 @@
        }
        
        ?>
-       
+       <?php if(!isset($_SESSION['valid'])) {?>
       <a class="fas fa-user" data-toggle="modal" data-target="#exampleModal" href="#"></a>
+      <?php } ?>
     </div>
   </div>
 </nav>
@@ -105,7 +104,10 @@ if(isset($_POST['accesso'])) {
   }
   if($_SESSION['tipo_utente'] == 4) {
     header("Location: dashboard.php");
-  } else {
+  } else if($_SESSION['tipo_utente'] == 0) {
+    header("Location: dashboard-azienda-sanitaria.php");
+  }
+   else {
     echo "<meta http-equiv='refresh' content='0'>";
   }
 
