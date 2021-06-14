@@ -59,6 +59,8 @@ window.onload = loadScript;
                     $lab = new LaboratorioController();
 
                     $laboratori = $lab->ricercaLaboratori($_GET["regione"], $_GET["provincia"], $_GET["citta"]);
+                if(!empty($laboratori)) {                      
+                    
                     foreach($laboratori as $laboratorio) {
                         echo "<a href='laboratorio?id=".$laboratorio['id']."'>"; 
                 ?>
@@ -84,10 +86,13 @@ window.onload = loadScript;
                     
                 </div>
                 </a>
-                <?php }  ?>
+                <?php } 
+                } else {
+                    echo "<h3>Non ci sono laboratori di analisi convenzionati nella zona selezionata </h3>"; } ?>
             </div>
             <div class="col-md-7 mappe">
                 <?php 
+                
                     $sizeArray = count($latlng);
                    
                     for ($row = 0; $row < $sizeArray; $row++) {
@@ -164,7 +169,7 @@ function initMap() {
 
     // Set zoom level
     var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
-        this.setZoom(14);
+        this.setZoom(10);
         google.maps.event.removeListener(boundsListener);
     });
 }
