@@ -17,3 +17,8 @@ Alcuni metodi per mostrare dei link relativi tagliano la stringa dell'URL dei pr
 6. accedere alla web app da localhost/covid19test
 
 caricheremo in seguito il database da importare con il dataset corretto 
+nello sprint 4 sono state aggiunte le funzionalità dell'azienda sanitaria :
+
+l'azienda sanitaria è registrata come account di tipo 0, verrà inserito nel dataset da importare
+
+nel mentre se si vogliono testare le funzionalità, inserire nella tabella utente un account di tipo 0 con i dati desiderati.
