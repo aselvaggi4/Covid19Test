@@ -53,21 +53,26 @@
                             aria-label="Cognome" required>
                             <label>Cognome</label>
                     </div>
-                    <div class="col-6 input-form">
+                    <div class="col-4 input-form">
                         <input type="text" id="citta" name="citta" class="form-control" 
                             aria-label="Città" required>
                             <label>Città</label>
                     </div>
-                    <div class="col-6 input-form">
+                    <div class="col-4 input-form">
                         <input type="text" id="provincia" name="provincia" class="form-control"
                             aria-label="Provincia" required>
                             <label>Provincia</label>
                     </div>
-                    <div class="col-6 input-form">
+                    <div class="col-4 input-form">
                         <input type="tel" id="cap" name="cap" class="form-control" pattern="\d*"
                             oninvalid="this.setCustomValidity(this.willValidate?'':'Inserisci un CAP valido')" aria-label="Cap"
                             required>
                             <label>CAP</label>
+                    </div>
+                    <div class="col-6 input-form">
+                        <input type="text" id="regione" name="regione" class="form-control" 
+                            aria-label="Regione" required>
+                            <label>Regione</label>
                     </div>
                     <div class="col-6 input-form">
                         <input type="text" id="indirizzo" name="indirizzo" class="form-control" 

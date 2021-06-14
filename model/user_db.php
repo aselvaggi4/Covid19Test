@@ -16,7 +16,7 @@ class Utente {
     private $telefono;
     private $email;
     private $password;
-
+    private $regione;
 
     function getUtente($user_email, $user_psw) {
         
@@ -56,7 +56,7 @@ class Utente {
 
     }
     // Crea un utente
-    function setUtente($tipo_utente, $nome, $cognome, $citta, $provincia, $cap, $indirizzo, $identificatore, $tel, $user_email, $user_psw) {
+    function setUtente($tipo_utente, $nome, $cognome, $citta, $provincia, $cap, $regione, $indirizzo, $identificatore, $tel, $user_email, $user_psw) {
         global $db;
 
         $this->tipo_utente = $tipo_utente;
@@ -65,6 +65,7 @@ class Utente {
         $this->citta = $citta; 
         $this->provincia = $provincia;
         $this->cap = $cap;
+        $this->regione = $regione;
         $this->indirizzo = $indirizzo;
         $this->identificatore = $identificatore;
         $this->telefono = $tel;
@@ -79,13 +80,13 @@ class Utente {
 
         if($count == 0) {
             if ($tipo_utente == 1 ) {
-                $query = "INSERT INTO utente (tipo_utente, Nome, Cognome, citta, provincia, cap, Indirizzo, tel, CF, email, password) VALUES ('$this->tipo_utente','$this->nome', '$this->cognome', '$this->citta', '$this->provincia', '$this->cap', '$this->indirizzo', '$this->telefono', '$this->identificatore', '$this->email', '$this->password')";
+                $query = "INSERT INTO utente (tipo_utente, Nome, Cognome, citta, provincia, cap, regione, Indirizzo, tel, CF, email, password) VALUES ('$this->tipo_utente','$this->nome', '$this->cognome', '$this->citta', '$this->provincia', '$this->cap', '$this->regione', '$this->indirizzo', '$this->telefono', '$this->identificatore', '$this->email', '$this->password')";
             } else if($tipo_utente == 2) {
-                $query = "INSERT INTO utente (tipo_utente, Nome, Cognome, citta, provincia, cap, Indirizzo, tel, IVA, email, password) VALUES ('$this->tipo_utente','$this->nome', '$this->cognome', '$this->citta', '$this->provincia', '$this->cap', '$this->indirizzo', '$this->telefono', '$this->identificatore', '$this->email', '$this->password')";        
+                $query = "INSERT INTO utente (tipo_utente, Nome, Cognome, citta, provincia, cap, regione, Indirizzo, tel, IVA, email, password) VALUES ('$this->tipo_utente','$this->nome', '$this->cognome', '$this->citta', '$this->provincia', '$this->cap', '$this->regione','$this->indirizzo', '$this->telefono', '$this->identificatore', '$this->email', '$this->password')";        
             } else if($tipo_utente == 3) {
-                $query = "INSERT INTO utente (tipo_utente, Nome, Cognome, citta, provincia, cap, Indirizzo, tel, Codice_regionale, email, password) VALUES ('$this->tipo_utente','$this->nome', '$this->cognome', '$this->citta', '$this->provincia', '$this->cap', '$this->indirizzo', '$this->telefono', '$this->identificatore', '$this->email', '$this->password')";
+                $query = "INSERT INTO utente (tipo_utente, Nome, Cognome, citta, provincia, cap, regione, Indirizzo, tel, Codice_regionale, email, password) VALUES ('$this->tipo_utente','$this->nome', '$this->cognome', '$this->citta', '$this->provincia', '$this->cap', '$this->regione', '$this->indirizzo', '$this->telefono', '$this->identificatore', '$this->email', '$this->password')";
             } else if($tipo_utente == 4) {
-                $query = "INSERT INTO utente (tipo_utente, Nome, citta, provincia, cap, Indirizzo, tel, email, password) VALUES ('$this->tipo_utente', '$this->nome', '$this->citta', '$this->provincia', '$this->cap', '$this->indirizzo', '$this->telefono', '$this->email', '$this->password')";
+                $query = "INSERT INTO utente (tipo_utente, Nome, citta, provincia, cap, regione, Indirizzo, tel, email, password) VALUES ('$this->tipo_utente', '$this->nome', '$this->citta', '$this->provincia', '$this->cap', '$this->regione', '$this->indirizzo', '$this->telefono', '$this->email', '$this->password')";
             }
             $statement = $db->prepare($query);
             $statement->execute();
@@ -119,7 +120,7 @@ class Utente {
     }
     // Registra un utente quando viene inserito da una prenotazione multipla / per terzi
     // Genera una password automatica
-    function registraUtente($user_email, $user_psw, $identificatore, $nome, $cognome) {
+    function registraUtente($user_email, $user_psw, $identificatore, $nome, $cognome, $regione, $citta, $tel) {
         global $db;
 
         $this->nome = $nome;
@@ -127,8 +128,11 @@ class Utente {
         $this->identificatore = $identificatore;
         $this->email = $user_email;
         $this->password = $user_psw;
+        $this->regione = $regione;
+        $this->citta = $citta;
+        $this->telefono = $tel;
 
-        $query = "INSERT INTO utente (tipo_utente, password, nome, cognome, CF, email) VALUES ('1', '$this->password', '$this->nome', '$this->cognome', '$this->identificatore', '$this->email')";
+        $query = "INSERT INTO utente (tipo_utente, password, nome, cognome, CF, email, regione, citta, tel) VALUES ('1', '$this->password', '$this->nome', '$this->cognome', '$this->identificatore', '$this->email',' $this->regione',  '$this->citta', ' $this->telefono')";
 
         $check = $db->prepare($query);
         $check->execute();

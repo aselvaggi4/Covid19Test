@@ -19,15 +19,15 @@ class UtenteController {
                 $risultato->cognome
             );
         } else {
-            throw new Exception("Dati errati!");
+            return false;
         }
     }
 
-    function registrazioneUtente($tipo_utente, $nome, $cognome, $citta, $provincia, $cap, $indirizzo, $CF, $tel, $user_email, $user_psw) {
+    function registrazioneUtente($tipo_utente, $nome, $cognome, $citta, $provincia, $cap, $regione ,$indirizzo, $CF, $tel, $user_email, $user_psw) {
         
         $utente = new Utente();
 
-        $check = $utente->setUtente($tipo_utente, $nome, $cognome, $citta, $provincia, $cap, $indirizzo, $CF, $tel, $user_email, $user_psw);
+        $check = $utente->setUtente($tipo_utente, $nome, $cognome, $citta, $provincia, $cap, $regione, $indirizzo, $CF, $tel, $user_email, $user_psw);
 
         if ($check == true) {
             $result = $utente->getUtente($user_email, $user_psw);
@@ -41,7 +41,7 @@ class UtenteController {
         }
     }
 
-    function utenteEsistente($email, $CF, $nome, $cognome) {
+    function utenteEsistente($email, $CF, $nome, $cognome, $regione, $citta, $telefono) {
 
         $utente = new Utente();
 
@@ -50,8 +50,8 @@ class UtenteController {
         if($risultato == false) {
 
             $password = $utente->generaPassword();
-
-            $utenteInserito = $utente->registraUtente($email,$password, $CF, $nome, $cognome);
+            // Aggiungi anche città regione e telefono
+            $utenteInserito = $utente->registraUtente($email,$password, $CF, $nome, $cognome, $regione, $citta, $telefono);
 
             // Invia un email con la password appena registrata 
             $utente->emailRegistrazione($email, $password, $nome, $cognome);
