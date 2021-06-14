@@ -1,13 +1,18 @@
 /* -----------------  CLASSI GENERICHE --------------------*/
 /* Set the size of the div element that contains the map */
 #mapCanvas {
-    min-height:100vh;
+    min-height: 100vh;
     /* The height is 400 pixels */
     width: 100%;
     /* The width is the width of the web page */
-  }
+}
+
+.nav-link {
+    padding: 0;
+}
+
 .margin-auto {
-    margin:auto;
+    margin: auto;
 }
 
 .centrato {
@@ -19,23 +24,30 @@
 }
 
 .celeste {
-    color:#03e9f4;
+    color: #03e9f4;
 }
 
 html,
 body {
-    color:#fff;
+    color: #fff;
     margin: 0;
     min-height: 100%;
     font-family: 'Roboto', sans-serif;
 }
-.navbar-light .navbar-toggler-icon { 
- background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+
+.navbar-light .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
 /* -----------------  NAVBAR --------------------*/
 
-#navbarNav, h1, h2, h3, h4, h5, h6 {
+#navbarNav,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: Poppins;
     font-weight: 600;
 }
@@ -86,6 +98,7 @@ body {
 .modal-content {
     padding-bottom: 1rem;
 }
+
 .modal-header .btn-close {
     margin: 0;
     padding: 0;
@@ -97,14 +110,17 @@ body {
 }
 
 .modal.fade.show {
-    background:linear-gradient(#141e30, #243b55);
+    background: linear-gradient(#141e30, #243b55);
 }
+
 .modal-content {
     background: transparent;
 }
+
 .modal-content input {
-    margin:15px auto !important;
+    margin: 15px auto !important;
 }
+
 .bottone-accedi {
     display: block;
     margin: auto;
@@ -193,7 +209,7 @@ body {
 .barra-ricerca input:-webkit-autofill:focus,
 .barra-ricerca input:-webkit-autofill:active {
     transition: background-color 5000s ease-in-out 0s;
-    -webkit-text-fill-color:black !important;
+    -webkit-text-fill-color: black !important;
 }
 
 
@@ -201,7 +217,8 @@ body {
 
 
 /* -------------INIZIO REGISTRAIZONE -------------------*/
-.form-registrazione, .modal-dialog {
+.form-registrazione,
+.modal-dialog {
     background: rgba(0, 0, 0, 0.5);
     box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
     border-radius: 10px;
@@ -213,17 +230,20 @@ body {
     max-width: 40%;
 }
 
-.form-registrazione input, .modal-content input {
+.form-registrazione input,
+.modal-content input {
     margin: 15px;
     border-bottom: 3px solid;
     background-color: transparent;
     border-radius: 0;
     border: 0;
     border-bottom: 1px solid #fff;
-    color:#fff;
+    color: #fff;
 }
-.form-registrazione input:focus, .modal-content input:focus {
-    background-color:transparent;
+
+.form-registrazione input:focus,
+.modal-content input:focus {
+    background-color: transparent;
     border-bottom: 1px solid #fff;
     color: #fff;
 }
@@ -231,6 +251,7 @@ body {
 .form-registrazione .btn {
     margin: 15px;
 }
+
 label {
     font-weight: 700;
     color: #fff;
@@ -240,15 +261,16 @@ label {
     transform: translateY(24px);
     pointer-events: none;
 }
-input:focus + label {
+
+input:focus+label {
     transform: translateY(15px);
     color: #03e9f4;
-  }
+}
 
-  .input-form {
+.input-form {
     display: flex;
     flex-direction: column;
-  }
+}
 
 form .btn-outline-primary {
     color: #03e9f4;
@@ -278,31 +300,39 @@ input:-webkit-autofill:active {
     font-family: Poppins;
     font-weight: 600;
 }
+
 .list-group-flush {
     padding-top: 5%;
 }
 
 .ricerca-lab .row {
     padding: 15px;
-    border: 1px solid rgba(0,0,0,.125);
+    border: 1px solid rgba(0, 0, 0, .125);
 }
+
 .ricerca-lab img {
     border-radius: 20px;
 }
+
 .mappe {
     padding-right: 0;
     padding-left: 0;
 }
+
 .info_content {
-    color:#0b111a !important;
+    color: #0b111a !important;
 }
-.ricerca-lab > a {
+
+.ricerca-lab>a {
     text-decoration: none !important;
 }
-.ricerca-lab .row:hover, li:hover {
-    color:#fff;
-    background: rgba(97,157,248, 0.3) !important;
+
+.ricerca-lab .row:hover,
+.ricerca-lab li:hover {
+    color: #fff;
+    background: rgba(97, 157, 248, 0.3) !important;
 }
+
 .ricerca-lab li {
     background: transparent;
 }
@@ -310,7 +340,7 @@ input:-webkit-autofill:active {
 /*-------------- PAGINA LABORATORIO ----------------*/
 .pagina-lab {
     padding: 20px;
-    color:#000;
+    color: #000;
     background-color: #fff;
     border-radius: 15px;
     margin: 3rem auto;
@@ -322,24 +352,28 @@ input:-webkit-autofill:active {
 
 /*-------------- PAGINA PRENOTAZIONE ----------------*/
 
-.form-prenotazione input, .form-prenotazione select {
+.form-prenotazione input,
+.form-prenotazione select {
     margin: 15px;
     border-bottom: 3px solid;
     background-color: transparent;
     border-radius: 0;
     border: 0;
     border-bottom: 1px solid #000;
-    color:#000;
+    color: #000;
 }
+
 .form-prenotazione label {
-    color:#000;
+    color: #000;
 }
 
 #inputId input:-webkit-autofill {
     -webkit-text-fill-color: #000 !important;
 }
-.form-prenotazione input:focus, .form-prenotazione select:focus {
-    background-color:transparent;
+
+.form-prenotazione input:focus,
+.form-prenotazione select:focus {
+    background-color: transparent;
     border-bottom: 1px solid #000;
     color: #000;
 }
@@ -347,12 +381,13 @@ input:-webkit-autofill:active {
 
 /*-------------- PAGINA RIEPILOGO ----------------*/
 
-.pagina-riepilogo > * {
-    padding-left:0;
-    padding-right:0;
+.pagina-riepilogo>* {
+    padding-left: 0;
+    padding-right: 0;
 }
+
 tr {
-    cursor:pointer;
+    cursor: pointer;
 }
 
 /*---------------- DASHBOARD -------------------*/
@@ -360,8 +395,80 @@ tr {
     background-color: #fff;
     border-radius: 15px;
     padding: 0.5rem;
-    color:#000;
-    text-align:center;
+    color: #000;
+    text-align: center;
+}
+
+/* ------------------- DASHBOARD AZIENDA SANITARIA -------------*
+/* ------------------- SIDEBAR -------------*
+/* The side navigation menu */
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 300px;
+    background-color: #fff;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+/* Sidebar links */
+.sidebar a {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Active/current link */
+.sidebar a.active,
+.sidebar h5.active {
+    background-color: #243b55;
+    color: white;
+}
+
+/* Links on mouse-over */
+.sidebar a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
+
+/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+div.content {
+    margin-left: 300px;
+    padding: 1px 16px;
+    height: 1000px;
+}
+
+.dashboard-azienda .card {
+    color: #000;
+    margin: 3rem auto;
+}
+
+/* On screens that are less than 700px wide, make the sidebar into a topbar */
+@media screen and (max-width: 700px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .sidebar a {
+        float: left;
+    }
+
+    div.content {
+        margin-left: 0;
+    }
+}
+
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+@media screen and (max-width: 400px) {
+    .sidebar a {
+        text-align: center;
+        float: none;
+    }
 }
 
 /*-------------- MEDIA QUERIES ----------------*/
@@ -370,6 +477,7 @@ tr {
         max-width: 40%;
     }
 }
+
 @media (max-width: 1199px) {
     .container.form-registrazione {
         max-width: 50%;
@@ -381,7 +489,7 @@ tr {
         margin-right: 2rem;
         margin-left: 2rem;
     }
-    
+
     #login {
         display: none;
     }
@@ -391,15 +499,19 @@ tr {
     .centra-navbar {
         text-align: center;
     }
+
     .fa-user {
         visibility: hidden;
     }
+
     .container.form-registrazione {
         max-width: 75%;
     }
+
     .input-form {
         padding-right: 50px;
     }
+
     .logout {
         text-align: center;
     }
@@ -409,5 +521,5 @@ tr {
     .container.form-registrazione {
         max-width: 85%;
     }
-    
+
 }
