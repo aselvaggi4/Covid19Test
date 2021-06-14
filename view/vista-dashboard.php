@@ -52,7 +52,7 @@ class Dashboard {
            
         </div>
         <div class="col-md-3 dashboard-card" style="margin-left:auto; padding:1rem;">
-        <h3>Dashboard cittadino</h3><hr>
+       
         <p>Benvenuto <strong>'.$_SESSION['nome'].' '.$_SESSION['cognome']. '</strong></p>
         <p>Questa è la tua dashboard: da qui puoi visualizzare le tue prenotazioni, annullarle o inserire e visualizzare i questionari anamnestici.</p>
         </div>    
@@ -88,7 +88,7 @@ class Dashboard {
             echo '<h3 style="text-align:center; color:black;">Non sono state trovate prenotazioni</h3>
             </div>
         <div class="col-md-3 dashboard-card" style="margin-left:auto; padding:1rem;">
-        <h3>Dashboard cittadino</h3><hr>
+        
         <p>Benvenuto <strong>'.$_SESSION['nome'].' '.$_SESSION['cognome']. '</strong></p>
         <p>Questa è la tua dashboard: da qui puoi visualizzare le tue prenotazioni, annullarle o inserire e visualizzare i questionari anamnestici.</p>
         </div>   ';
@@ -144,7 +144,7 @@ class Dashboard {
         
         </div>
         <div class="col-md-3 dashboard-card" style="margin-left:auto; padding:1rem;">
-        <h3>Dashboard Azienda</h3><hr>
+        
         <p>Benvenuto <strong>'.$_SESSION['nome'].' '.$_SESSION['cognome']. '</strong></p>
         <p>Questa è la tua dashboard: da qui puoi visualizzare le prenotazioni aziendali e visualizzare i gli esiti dei tuoi dipendenti.</p>
         </div> 
@@ -180,7 +180,7 @@ class Dashboard {
                 echo '<h3 style="text-align:center; color:black;">Non sono state trovate prenotazioni</h3>
                 </div>
                 <div class="col-md-3 dashboard-card" style="margin-left:auto; padding:1rem;">
-                <h3>Dashboard Azienda</h3><hr>
+                
                 <p>Benvenuto <strong>'.$_SESSION['nome'].' '.$_SESSION['cognome']. '</strong></p>
                 <p>Questa è la tua dashboard: da qui puoi visualizzare le prenotazioni aziendali e visualizzare i gli esiti dei tuoi dipendenti.</p>
                 </div>';
@@ -236,7 +236,7 @@ class Dashboard {
         </div>
         
         <div class="col-md-3 dashboard-card" style="margin-left:auto; padding:1rem;">
-        <h3>Dashboard Medico</h3><hr>
+        
         <p>Benvenuto <strong>'.$_SESSION['nome'].' '.$_SESSION['cognome']. '</strong></p>
         <p>Questa è la tua dashboard: da qui puoi visualizzare le prenotazioni che hai effettuato per i tuoi pazienti e visualizzarne gli esiti.</p>
         </div> 
@@ -272,7 +272,7 @@ class Dashboard {
                 echo '<h3 style="text-align:center; color:black;">Non sono state trovate prenotazioni</h3>
                 </div>
                 <div class="col-md-3 dashboard-card" style="margin-left:auto; padding:1rem;">
-                <h3>Dashboard Medico</h3><hr>
+                
                 <p>Benvenuto <strong>'.$_SESSION['nome'].' '.$_SESSION['cognome']. '</strong></p>
                 <p>Questa è la tua dashboard: da qui puoi visualizzare le prenotazioni che hai effettuato per i tuoi pazienti e visualizzarne gli esiti.</p>
                 </div>';
@@ -328,7 +328,6 @@ class Dashboard {
         echo'</tbody></table>
         </div>
         <div class="col-md-3 dashboard-card" style="margin-left:auto; padding:1rem;">
-        <h3>Dashboard Laboratorio</h3><hr>
         <p>Benvenuto <strong>'.$_SESSION['nome'].' '.$_SESSION['cognome']. '</strong></p>
         <p>Questa è la tua dashboard: da qui puoi visualizzare le prenotazioni, visualizzare i questionari anamnestici ed inserire l\'esito.</p>
         <a href="modifica-disponibilita" class="btn btn-primary">MODIFICA DISPONIBILITÀ</a>
@@ -366,7 +365,6 @@ class Dashboard {
         }   else {
                 echo '<h3 style="text-align:center; color:black;">Non sono state trovate prenotazioni</h3></div>
                 <div class="col-md-3 dashboard-card" style="margin-left:auto; padding:1rem;">
-                <h3>Dashboard Laboratorio</h3><hr>
                 <p>Benvenuto <strong>'.$_SESSION['nome'].' '.$_SESSION['cognome']. '</strong></p>
                 <p>Questa è la tua dashboard: da qui puoi visualizzare le prenotazioni, visualizzare i questionari anamnestici ed inserire l\'esito.</p>
                 <a href="modifica-disponibilita" class="btn btn-primary">MODIFICA DISPONIBILITÀ</a>
