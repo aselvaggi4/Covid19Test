@@ -11,10 +11,11 @@ class Prenotazione {
     private $tipo_test;
     public $id_inserito;
     public $id;
+    private $costo;
     
     //Modificare il costruttore di Prenotazione
    
-    function nuovaPrenotazione($laboratorio, $tipo_test, $tipo_prenotazione, $utente, $data){
+    function nuovaPrenotazione($laboratorio, $tipo_test, $tipo_prenotazione, $utente, $data, $costo){
         
         global $db;
         
@@ -23,8 +24,9 @@ class Prenotazione {
         $this->utente = $utente;
         $this->data = $data;
         $this->tipo_test = $tipo_test;
+        $this->costo = $costo;
    
-        $query = "INSERT INTO prenotazioni (laboratorio, tipo_prenotazione, prenotante, tipo_test, data) VALUES ('$this->laboratorio','$this->tipo_prenotazione', '$this->utente', '$this->tipo_test', '$this->data')";
+        $query = "INSERT INTO prenotazioni (laboratorio, tipo_prenotazione, prenotante, tipo_test, data, costo) VALUES ('$this->laboratorio','$this->tipo_prenotazione', '$this->utente', '$this->tipo_test', '$this->data', '$this->costo')";
     
         $statement = $db->prepare($query);
         $statement->execute();

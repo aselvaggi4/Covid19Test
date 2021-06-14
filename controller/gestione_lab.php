@@ -21,8 +21,7 @@ class LaboratorioController {
             $cap = " ";
             $tel = " ";
         
-            $controllo = $lab->setUtente($tipo_utente, $nome, $cognome, $citta, $provincia, $cap, $via, $identificatore, $tel, $lab_email, $lab_psw);
-            echo "<span style='color:red'>".$controllo."</span>";
+            $controllo = $lab->setUtente($tipo_utente, $nome, $cognome, $citta, $provincia, $cap, $regione, $via, $identificatore, $tel, $lab_email, $lab_psw);
 
             if ($controllo !== 0) {
                 $res = $lab->getUtente($lab_email, $lab_psw);

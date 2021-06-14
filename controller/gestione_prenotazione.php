@@ -7,24 +7,24 @@ require_once('gestione_lab.php');
 
 class PrenotazioneController {
     
-    function creaPrenotazione($utente, $tipo_test, $data, $orario, $laboratorio) {
+    function creaPrenotazione($utente, $tipo_test, $data, $orario, $laboratorio, $costo) {
         
         $tipo_prenotazione = "singola";
         //prenotazione riceverà l'id appena inserito
         $prenotazione = new Prenotazione();
-        $prenotazione->nuovaPrenotazione($laboratorio, $tipo_test, $tipo_prenotazione, $utente, $data);
+        $prenotazione->nuovaPrenotazione($laboratorio, $tipo_test, $tipo_prenotazione, $utente, $data, $costo);
         
         $tampone = new TamponeController();
         $tampone->creaTampone($prenotazione->id_inserito, $utente, $laboratorio, $data, $orario);
 
     }
 
-    function creaPrenotazioneMultipla($prenotante, $tipo_test, $data, $laboratorio, $prenotanti) {
+    function creaPrenotazioneMultipla($prenotante, $tipo_test, $data, $laboratorio, $prenotanti, $costo) {
         
         $tipo_prenotazione = "multipla";
         //Prenotazione restituisce l'id appena inserito
         $prenotazione = new Prenotazione();
-        $prenotazione->nuovaPrenotazione($laboratorio, $tipo_test, $tipo_prenotazione, $prenotante, $data);
+        $prenotazione->nuovaPrenotazione($laboratorio, $tipo_test, $tipo_prenotazione, $prenotante, $data, $costo);
         
         $tampone = new TamponeController();
         // Per ogni prenotante (Gli viene passato un array multidimensionale contenente i dati di ogni persona prenotata)
@@ -33,9 +33,10 @@ class PrenotazioneController {
         foreach($prenotanti as $persona) {
 
             $utente = new UtenteController();
+            //Aggiungere dati regione, città e telefono in utenteEsistente
             //Funzione omessa dal diagramma di sequenza per eccessiva complessità e specificità
             // Viene restituito l'id dell'utente appena inserito nel db
-            $id_utente = $utente->utenteEsistente($persona['email'], $persona['CF'], $persona['nome'], $persona['cognome']);
+            $id_utente = $utente->utenteEsistente($persona['email'], $persona['CF'], $persona['nome'], $persona['cognome'], $persona['regione'], $persona['citta'], $persona['telefono']);
             
             $tampone->creaTampone($prenotazione->id_inserito, $id_utente, $laboratorio, $data, $persona['orario']);
         }
