@@ -41,7 +41,7 @@ require_once('controller/gestione_prenotazione.php');
 						<div class="row form-prenotazione">
 							<div class="col-md-6 input-form margin-auto" style="margin-bottom:2rem;">
 								<label>Seleziona data</label>
-								<input type="date" name="data" id="data" class="form-control" aria-label="Data"
+								<input type="date" name="data" min="<?php echo date("Y-m-d"); ?>" id="data" class="form-control" aria-label="Data"
 									placeholder="Data" required>
 							</div>
 							<div class="col-md-12 input-form">
@@ -53,7 +53,11 @@ require_once('controller/gestione_prenotazione.php');
 
 						$orariDisponibili = $labController->controllaDisponibilita($laboratorio['id'], $_POST['data']);
 						$orari = $orariDisponibili;
-						echo '<h3 style="padding:2rem;">Rimuovi orari disponibili per il giorno '. $_POST['data'].'</h3>';
+						if(empty($orari)) {
+							echo '<h3 style="padding:2rem;">Non ci sono orari disponibili per il giorno <br>'. $_POST['data'].'</h3>';
+						} else {
+							echo '<h3 style="padding:2rem;">Rimuovi orari disponibili per il giorno <br> '. $_POST['data'].'</h3>';
+						}
 						 ?>
 					<form method="POST" action="#">
 					<div class="row form-prenotazione">
@@ -101,21 +105,14 @@ require_once('controller/gestione_prenotazione.php');
 						}
 						// Aggiunge l'ultimo orario selezionato
 						$eliminaOrari[] = $_POST['fine'];
-						print_r($eliminaOrari);
 
 						$prenotazione = new PrenotazioneController();
 
 						foreach($eliminaOrari as $orarioElimina) {
 							$nuovoOrario = $_POST['data'] . " " . $orarioElimina;
-							$prenotazione->creaPrenotazione($_SESSION['id'], "NULL", $_POST['data'], $nuovoOrario, $laboratorio['id']);
+							$costo = 0;
+							$prenotazione->creaPrenotazione($_SESSION['id'], "NULL", $_POST['data'], $nuovoOrario, $laboratorio['id'],$costo);
 						}
-					/*
-					chiave = array search (array) 
-						while(array[numero] != valore 17 ) {
-							orariOccupati[] = array[numero];
-							numero ++;
-							}
-						*/
 				}
 		}?>
 		<?php include ("footer-include.php"); ?>

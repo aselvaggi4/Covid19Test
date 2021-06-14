@@ -79,7 +79,7 @@ class CreaPrenotazione {
             }
         echo '<div class="col-md-6 input-form">
             <label>Seleziona data</label>
-            <input type="date" name="data" id="data" class="form-control" aria-label="Data" placeholder="Data" required>
+            <input type="date" name="data" id="data" min="'. date("Y-m-d").'" class="form-control" aria-label="Data" placeholder="Data" required>
         </div>
         <div class="col-md-6 input-form">
             <input type="hidden" name="'.$this->prenotazione.'" value="ok">
@@ -113,20 +113,20 @@ class CreaPrenotazione {
             </div>';
             for($tampone = 1; $tampone <= $this->numTamponi; $tampone++ ) {
                 
-            echo'<div class="col-md-2 input-form">
+            echo'<div class="col-md-3 input-form">
             <label>Seleziona Orario</label>
             <select class="form-control select2" id="orario" name="orario[]" required><option />';
             foreach($this->orariDisponibili as $orario){
                 echo '<option value='.$orario.'>'. $orario .'</option>' ;
             }
             echo '</select></div>';
-            echo'<div class="col-md-2 input-form">
+            echo'<div class="col-md-3 input-form">
                 <input type="hidden" name="entry_id[]" value="'.$tampone.'">
                 <input type="text" id="nome" name="nome[]" class="form-control" aria-label="Nome" required>
                 <label>Nome</label>
     
             </div>
-            <div class="col-md-2 input-form">
+            <div class="col-md-3 input-form">
                 <input type="text" id="cognome" name="cognome[]" class="form-control" aria-label="Cognome" required>
                 <label>Cognome</label>
             </div>
@@ -134,11 +134,24 @@ class CreaPrenotazione {
                 <input type="email" id="email" name="email[]" class="form-control" aria-label="email" required>
                 <label>E-mail</label>
             </div>
-            <div class="col-md-2 input-form">
+            <div class="col-md-3 input-form">
                 <input type="text" class="form-control" name="CF[]" id="CF" aria-label="Codice fiscale" required>
                 <label>Codice Fiscale</label>
-                
-            </div>';
+            </div>
+            <div class="col-md-3 input-form">
+                <input type="text" class="form-control" name="regione[]" id="regione" aria-label="Regione" required>
+                <label>Regione</label>
+            </div>
+            <div class="col-md-3 input-form">
+                <input type="text" class="form-control" name="citta[]" id="citta" aria-label="Città" required>
+                <label>Città</label>
+            </div>
+            <div class="col-md-3 input-form">
+                <input type="text" class="form-control" name="telefono[]" id="telefono" aria-label="Telefono" required>
+                <label>Telefono</label>
+            </div>
+            <hr style="color:black;">
+            ';
             }
         echo'</div>
         <input type="hidden" name="pren_comp" value="ok">
