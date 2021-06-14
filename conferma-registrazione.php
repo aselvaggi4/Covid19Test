@@ -33,7 +33,7 @@
         // Se il tipo utente è qualsiasi MA NON Laboratorio
         if($_POST['tipo_utente'] != 4) {
             $gestioneUtente->registrazioneUtente($_POST['tipo_utente'], $_POST['nome'], $_POST['cognome'], $_POST['citta'], $_POST['provincia'], 
-            $_POST['cap'], $_POST['indirizzo'], $_POST['CF'], $_POST['tel'], $_POST['email'], $_POST['password']);
+            $_POST['cap'],$_POST['regione'], $_POST['indirizzo'], $_POST['CF'], $_POST['tel'], $_POST['email'], $_POST['password']);
 
             $caught = false;   
             $registrazioneLab = 5;
@@ -42,7 +42,9 @@
             if($_FILES['immagine_lab']['name']){
                 move_uploaded_file($_FILES['immagine_lab']['tmp_name'], "lab_img/".$_FILES['immagine_lab']['name']);
                 $img="lab_img/".$_FILES['immagine_lab']['name'];
-                
+                $gestioneLab = new LaboratorioController();
+                $registrazioneLab = $gestioneLab->registraLaboratorio($_POST['regione'],$_POST['provincia'], $_POST['citta'],$_POST['indirizzo'],$_POST['iva'], $_POST['email'], $_POST['nome'], $_POST['password'], $img, $_POST['tel'], $_POST['costo_molecolare'], $_POST['costo_antigenico']);
+                $caught = false;
             } else {
                 $img = NULL;
                 $gestioneLab = new LaboratorioController();
@@ -82,6 +84,8 @@
         <div class="container">
         <div class="row" style="margin: auto 8%">
             <h2 class="centrato" style="margin:8% auto;">Non è stato trovato l'indirizzo inserito, prova a scriverlo senza abbreviazioni.</h2>
+            <br>
+            <h3 class="centrato m-3 p-3">Inserisci l'indirizzo senza virgole tra la via ed il numero.</h3>
             <form action="index" class="centrato">
             <button type="button" class="btn btn-outline-danger" onclick="history.back()">TORNA ALLA REGISTRAZIONE</button>
             </form>
