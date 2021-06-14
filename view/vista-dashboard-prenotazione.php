@@ -15,7 +15,7 @@ class MostraPrenotazione {
                         anamnestico!
                     </div>
                 </div>
-                <p>Clicca qui per scaricare il form del <a href="..\questionario.pdf">questionario anamnestico</a></p>
+                <p>Clicca qui per scaricare il form del <a href=".\questionario.pdf">questionario anamnestico</a></p>
                 <form action="#" method="post" enctype="multipart/form-data">
                     Dopo averlo compilato carica il questionario anamnestico qui!<br>
                     <input type="hidden" name="file_inserito">
