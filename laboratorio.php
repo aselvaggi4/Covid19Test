@@ -14,9 +14,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <?php include("head-include.php"); ?>
+    <?php include("head-include.php"); 
+    
+    $lab = new LaboratorioController();
+    $laboratorio = $lab->trovaLab($_REQUEST['id']);
 
-    <title>Laboratorio <?php echo "nomeLab"; ?></title>
+    ?>
+
+    <title>Laboratorio <?php echo $laboratorio->nome; ?></title>
     <style>
     .select2-results .select2-disabled {
         display:none;
@@ -29,8 +34,6 @@
 
     <?php 
     
-    $lab = new LaboratorioController();
-    $laboratorio = $lab->trovaLab($_REQUEST['id']);
 
 ?>
     <div class="container">
@@ -42,7 +45,7 @@
                 <img class=" shadow mb-5 " <?php if($laboratorio->img != NULL) {
                     echo 'src="'.$laboratorio->img.'"'; 
                 } else echo 'src="img/covid19-test-corona-virus.jpg"'?> src="img/covid19-test-corona-virus.jpg"
-                    style="height: 450px; object-fit: none; border-radius: 15px;">
+                    style="height: 450px; max-width:820px; object-fit: none; border-radius: 15px;">
 
             </div>
             <div class="col-md-4">
