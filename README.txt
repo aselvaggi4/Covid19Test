@@ -15,3 +15,5 @@ Alcuni metodi per mostrare dei link relativi tagliano la stringa dell'URL dei pr
 5. Utilizzare le query inserite nel file sqlscripts per generare la struttura del database (in ordine)
 
 6. accedere alla web app da localhost/covid19test
+
+caricheremo in seguito il database da importare con il dataset corretto 
