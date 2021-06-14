@@ -59,7 +59,7 @@ class Laboratorio {
             'output' => 'json',
             'limit' => 1,
           ]);
-        print_r($queryString);
+        //print_r($queryString);
         $ch = curl_init(sprintf('%s?%s', 'http://api.positionstack.com/v1/forward', $queryString));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
           
@@ -69,14 +69,14 @@ class Laboratorio {
           
         $apiResult = json_decode($json, true);
 
-        print_r($apiResult);
+        //print_r($apiResult);
 
         if(isset($apiResult['data'][0]['latitude'])) {
             
             $lat = $apiResult['data'][0]['latitude'];
             $lng = $apiResult['data'][0]['longitude'];
         
-            if($apiResult['data'][0]['confidence'] < 0.7) {
+            if($apiResult['data'][0]['confidence'] < 0.6) {
                 // Se non è sicuro della via inserita return false
                 return false;
                 exit();
@@ -92,7 +92,7 @@ class Laboratorio {
         $check->execute();
 
         $count = $check->rowCount(); 
-        echo "<br><br>".$count;
+        
             
         if($count == 0) {
             
