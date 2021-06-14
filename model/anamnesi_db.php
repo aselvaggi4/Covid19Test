@@ -17,7 +17,9 @@ class Anamnesi {
 
         $fileName = $file['name'];
         
-        $fileExtension = strtolower(end(explode('.', $fileName)));
+        //$fileExtension = strtolower(end(explode('.', $fileName)));
+        $temp = explode('.', $fileName);
+        $fileExtension = strtolower(end($temp));
 
         $fileSize = $file['size'];
         $fileTmpName  = $file['tmp_name'];
