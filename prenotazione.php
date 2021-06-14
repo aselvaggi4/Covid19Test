@@ -113,6 +113,7 @@ if(isset($_POST['file_inserito'])) {
 
     $tampone->aggiungiAnamnesi($_FILES['anamnesi'], $_REQUEST['pren']);
     // $tampone->eliminaPrenotazione($_REQUEST['pren']);
+    echo "<meta http-equiv='refresh' content='0'>";
 }
 
 if(isset($_POST['annulla_prenotazione'])) {

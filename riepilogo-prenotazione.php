@@ -46,7 +46,7 @@
       if(!isset($_POST['entry_id'])) {
         $orario = $_POST['data'] . " " . $_POST['orario'].":10:00";
         
-        $prenotazione->creaPrenotazione($_SESSION['id'], $_POST['tipo'], $_POST['data'], $orario, $_POST['laboratorio']);
+        $prenotazione->creaPrenotazione($_SESSION['id'], $_POST['tipo'], $_POST['data'], $orario, $_POST['laboratorio'], $prezzo);
         // Stampa in caso di prenotazione singola
         echo '
         <div class="card shadow">
@@ -76,12 +76,15 @@
             $prenotanti[$key]['cognome'] = $_POST['cognome'][$key];
             $prenotanti[$key]['email'] = $_POST['email'][$key];
             $prenotanti[$key]['CF'] = $_POST['CF'][$key];
+            $prenotanti[$key]['regione'] = $_POST['regione'][$key];
+            $prenotanti[$key]['citta'] = $_POST['citta'][$key];
+            $prenotanti[$key]['telefono'] = $_POST['telefono'][$key];
             $prenotanti[$key]['orario'] = $_POST['data']." ".$_POST['orario'][$key];
             //echo "Prenotazione per " . $entry_id . " " . $nome;
             $prezzoTot += $prezzo;
          }
 
-         $prenotazione->creaPrenotazioneMultipla($_SESSION['id'], $_POST['tipo'], $_POST['data'],$_POST['laboratorio'], $prenotanti);
+         $prenotazione->creaPrenotazioneMultipla($_SESSION['id'], $_POST['tipo'], $_POST['data'],$_POST['laboratorio'], $prenotanti, $prezzoTot);
          
          echo '
          <div class="card shadow">
