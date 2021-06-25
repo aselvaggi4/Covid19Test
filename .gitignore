@@ -4,3 +4,7 @@ lab_img/*
 !lab_img/.gitkeep
 uploads/*
 !uploads/.gitkeep
+php.ini
+covid19test.sql
+sendmail.ini
+covid19test.rar

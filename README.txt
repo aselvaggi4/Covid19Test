@@ -1,7 +1,7 @@
 IMPORTANTE: Per un corretto funzionamento in modalità offline DEVE essere installato in C:/xampp/htdocs/Covid19Test
 D:/xampp/htdocs/Covid19Test
 
-Alcuni metodi per mostrare dei link relativi tagliano la stringa dell'URL dei primi 27 caratteri. (D:/xampp/htdocs/)
+Alcuni metodi per mostrare dei link relativi tagliano la stringa dell'URL dei primi 27 caratteri. (D:/xampp/htdocs/covid19test)
 
 
 1. Installare XAMPP https://www.apachefriends.org/download.html (in C:/xampp o D:/xampp)
@@ -10,17 +10,21 @@ Alcuni metodi per mostrare dei link relativi tagliano la stringa dell'URL dei pr
 
 3. Inserire la cartella in C:/xampp/htdocs/
 
-4. Creare un nuovo database da phpmyadmin (http://localhost/phpmyadmin/)
+4. Creare un nuovo database da phpmyadmin di nome covid19test (http://localhost/phpmyadmin/)
 
-5. Utilizzare le query inserite nel file sqlscripts per generare la struttura del database (in ordine)
+5.importare dalla sezione "import" il file covid19test.sql
 
 6. accedere alla web app da localhost/covid19test
 
-caricheremo in seguito il database da importare con il dataset corretto 
-nello sprint 4 sono state aggiunte le funzionalità dell'azienda sanitaria :
+per visualizzare la dashboard dell'azienda sanitaria:
+username --> aziendasanitaria@admin.it
+password --> admin
+per effettuare il logout navigare di nuovo a localhost/covid19test e premere il tasto per il logout
 
-l'azienda sanitaria è registrata come account di tipo 0, verrà inserito nel dataset da importare
+(Sono stati inseriti tramite dei loop N tamponi per ogni utente registrato, tutti prenotati il 14 giugno; quindi dalla sezione "pazienti positivi" si vedreanno ripetuti i dati degli stessi 10 utenti numerose volte)
 
-nel mentre se si vogliono testare le funzionalità, inserire nella tabella utente un account di tipo 0 con i dati desiderati.
+NB: Non funzionerà il sistema di invio di email in quanto serve modificare dei file di configurazione di XAMPP aggiungendo email e password da cui inviare le email
 
-NB: Non funzionerà il sistema di invio di email in quanto serve modificare dei file di configurazione di XAMPP aggiungendo email e password da cui inviare le email, verranno eventualmente inseriti
+
+1. Inserire il file php.ini in (C:/xampp/php) 
+2. Inserire il file sendmail.ini in (C:/xampp/sendmail)

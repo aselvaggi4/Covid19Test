@@ -82,9 +82,15 @@ class Laboratorio {
                 exit();
             } 
         } else {
+            
+            //In caso l'API positionstack sia ancora down
+            $lat = '0.0';
+            $lng = '0.0';
+            //commentare anche return false e exit();
+
             //Se non è stata proprio trovata la via return false
-            return false;
-            exit();
+            //return false;
+            //exit();
         }
         $sql = "SELECT * FROM laboratori WHERE username = '$lab_email'";
 
